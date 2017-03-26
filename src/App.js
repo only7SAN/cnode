@@ -1,23 +1,25 @@
-require ('./style/style.scss');
-
 import React,{ Component }from 'react';
 import ReactDOM,{ render }from 'react-dom';
 import { Router,Route,IndexRoute,hashHistory} from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store/store';
 
-import IndexList from './component/indexList';
-import TopicDetail from './component/topicDetail';
-import TopicNew from './component/topicNew';
-import Messages from './component/messages';
-import UserView from './component/userview';
-import SignIn from './component/signIn';
-import SignOut from './component/signOut';
+import IndexList from './container/indexList';
+import TopicDetail from './container/topicDetail';
+import TopicNew from './container/topicNew';
+import Messages from './container/messages';
+import UserView from './container/userview';
+import SignIn from './container/signIn';
+import SignOut from './container/signOut';
+
+//加载公共样式
+import './style/style.scss';
+import 'github-markdown-css';
 
 class Root extends Component{
 	render(){
 		return (
-			<div>{this.props.children}</div>
+			<div className="container">{this.props.children}</div>
 			);
 	}
 }
@@ -31,8 +33,8 @@ render(
 				<Route path="topic/:id" component = {TopicDetail} />
 				<Route path="my/messages" component = {Messages} />
 				<Route path="user/:loginname" component = {UserView} />
-				<Route path="signIn" component = {SignIn} />
-				<Route path="signOut" component = {SignOut} />
+				<Route path="signin" component = {SignIn} />
+				<Route path="signout" component = {SignOut} />
 			</Route>
 		</Router>
 	</Provider>

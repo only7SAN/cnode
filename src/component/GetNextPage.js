@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
-import action from '../../action'
+import action from '../action';
 import { connect } from 'react-redux';
-import {Tool,merged} from '../../tool';
+import {Tool,merged} from '../tool';
 import {DataLoad,Header,Footer,UserHeadImg,TigMsgSignIn,DataNull} from './index';
 
 import GetNextPage from 'get-next-page';

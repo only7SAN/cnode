@@ -12,9 +12,21 @@ a{
 	color:#091212;
 }
 
+#app{
+	width: 100%;
+	height: 100%;
+	background-color: gray;
+}
+
+.container{
+	position: relative;
+	width:1200px;
+	margin:0 auto;
+	box-sizing: border-box;
+	padding: 5px;   /**清楚margin-top**/
+}
+
 header{
-	position: fixed;
-	top: 0px;
 	width: 100%;
 	height: 50px;
 	background-color: #58B000;
@@ -71,11 +83,17 @@ header{
 	text-align: center;
 }
 
-footer .footer-menu{
+.footer{
 	position: fixed;
 	bottom: 0px;
-	width: 100%;
+	width: 1200px;
 	height: 50px;
+	margin:0 auto;
+	box-sizing: border-box;
+}
+
+
+.footer-menu{
 	display: flex;
 	justify-content: center;
 
@@ -97,8 +115,33 @@ footer .footer-menu{
 	}
 }
 
-/**indexlist**/
+/**indexlist 网站首页**/
+.indexTitle-box{
+	position: absolute;
+	width: 200px;
+	height: 160px;
+	top:-20px;
+	left:-80px;
+	background-color:#58B000;
+	border-radius: 50%;
+	border:3px solid #fff;
+	transform:rotate(-25deg);
+	z-index: 100;
+	
+	.indexTitle-icon{
+		position: absolute;
+		top: 50%;
+		left:50%;
+		font-size: 36px;
+		color: #fff;
+		font-weight: bold;
+		transform:translate(-50%,-50%);
+	}
+}
+
 .topic-menu{
+	position: relative;
+	margin-top: 75px;
 	display: flex;
 	justify-content: center;
 	height: 50px;
@@ -118,19 +161,250 @@ footer .footer-menu{
 }
 
 .index-list{
+	background-color: #fff;
+	padding: 20px;
 
 	.index-item{
 		clear: both;
-		border-bottom: 1px solid pink;
-		margin-bottom: 40px;
+		height: 60px;
+		border-bottom: 2px solid green;
+		margin-top: 20px;
 
 		.index-item-title{
 			float: left;
 		}
 
-		.index-item-author{
+		.index-item-author-head{
+			width: 40px;
+			height: 40px;
+			margin-top: -5px;
+			padding-right: 20px;
 			float: right;
 		}
 
+	}
+}
+
+/**文章详情页面**/
+.topic-header{
+	background-color: #fff;
+	overflow: hidden;
+
+	.topic-header-list{
+
+		li{
+			float:left;
+			margin-left: 20px;
+		}
+	}
+
+	.topic-collect{
+		cursor: pointer;
+		float:left;
+		margin-left: 20px;
+		font-size: 18px;
+		font-weight:blod;
+		color: green;
+	}
+}
+
+.topic-content{
+	margin-top: 20px;
+	background-color: #fff;
+}
+
+.reply{
+	margin-top: 20px;
+	background-color:#fff;
+	
+	.reply-title{
+		color: red;
+		padding: 30px;
+		border: 1px solid green;
+	}
+
+	.reply-item{
+		padding: 10px 20px;
+		border: 1px solid green;
+
+		.reply-author-head{
+			width: 35px;
+			height: 35px;
+		}
+	}
+}
+
+/**文章新建页面**/
+.topic-new-page{
+	background-color: #fff;
+	overflow: hidden;
+
+	.topic-new-h2{
+		color: red;
+		padding: 30px;
+		border: 1px solid green;
+	}
+
+	.topic-new{
+		font-size: 24px;
+		padding: 30px;
+
+		*{
+			width: 450px;
+			height: 40px;
+			margin:20px;
+			vertical-align: middle;
+			font-size: 18px;
+		}
+
+		.topic-new-content{
+			height: 160px;
+		}
+
+		.topic-new-button{
+			width: 120px;
+			height: 45px;
+			border-radius: 20%;
+			background-color:#31e236;
+			color: #fff;
+			font-size: 20px;
+		}
+	}
+}
+
+/**用户信息页面**/
+.user-msg{
+	background-color: #fff;
+	overflow: hidden;
+
+	.user-msg-title{
+		color: red;
+		padding: 20px 0 10px 30px;
+		border-bottom: 1px solid green;
+	}
+
+	.user-msg-head{
+		width: 150px;
+		height: 150px;
+		float: left;
+		margin:20px 0 30px 50px;
+		border-radius: 50%;
+	}
+
+	.user-msg-loginname{
+		padding: 20px;
+		float: left;
+	}
+
+	.user-msg-score{
+		padding: 20px;
+		float: left;
+	}
+}
+
+.user-topics{
+	background-color: #fff;
+	overflow: hidden;
+
+	.user-topics-title{
+		color: red;
+		padding: 20px 0 10px 30px;
+		border-bottom: 1px solid green;
+	}
+
+	.user-topics-item{
+		margin:10px;
+	}
+}
+
+.user-replies{
+	background-color: #fff;
+	overflow: hidden;
+
+	.user-replies-title{
+		color: red;
+		padding: 20px 0 10px 30px;
+		border-bottom: 1px solid green;
+	}
+
+	.user-replies-item{
+		margin:10px;
+	}
+}
+
+.user-collections{
+	background-color: #fff;
+	overflow: hidden;
+
+	.user-collections-title{
+		color: red;
+		padding: 20px 0 10px 30px;
+		border-bottom: 1px solid green;
+	}
+
+	.user-collections-item{
+		margin:10px;
+	}
+}
+
+/**用户消息页面**/
+.messages{
+	background-color: #fff;
+	overflow: hidden;
+
+	.msg-not-read-title,.msg-read-title{
+		color: red;
+		padding: 20px 0 10px 30px;
+		border-bottom: 1px solid green;
+	}
+
+	.msg-not-read-item,.msg-read-item{
+		margin:10px;
+	}
+}
+
+/**登录页面**/
+.form-signIn{
+	width: 400px;
+	margin:0 auto;
+	margin-top: 150px;
+	border-radius: 5%;
+	background-color: #fff;
+	overflow: hidden;
+
+	.signIn-title{
+		padding: 5px;
+		font-size: 32px;
+		text-align: center;
+		color: #239E40;
+	}
+
+	.signIn-input{
+		margin:10px 0 20px 70px;
+		width: 200px;
+		height: 45px;
+		border-radius: 10%;
+	}
+
+	.signIn-btn{
+		width: 60px;
+		height: 45px;
+		border-radius: 10%;
+		background-color: #239E40;
+		color: #fff;
+		font-size: 18px;
+	}
+}
+
+.tip-msg-signIn{
+	padding: 5px;
+	font-size: 20px;
+	color: #458A8A;
+	text-align: center;
+
+	.tip-msg-span{
+		color: #239E40;
+		font-weight: bold;
+		font-size: 28px;
 	}
 }

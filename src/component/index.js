@@ -1,10 +1,9 @@
 import React,{Component,PropType} from 'react';
 import {Route,Link,Router,hashHistory} from 'react-router';
 import {connect} from 'react-redux';
-import action from '../../action/index';
-import {Tool} from '../../tool';
+import action from '../action/index';
+import {Tool} from '../tool';
 
-import GetData  from  './GetData';
 import GetNextPage  from  './GetNextPage';
 
 class DataLoad extends Component{
@@ -25,7 +24,7 @@ DataLoad.defaultProps = {
 class Header extends Component{
 	render(){
 		return (
-				<header>
+				<header className="header">
 					<div className="nav-left">左</div>
 					<h2 className="nav-title">cnode</h2>
 					<div className="nav-right">右</div>
@@ -50,7 +49,7 @@ class Footer extends Component{
 	    arr[this.props.index] = 'on';
 
 		return (
-			<footer>
+			<footer className="footer">
 				<ul className="footer-menu">
 					<li>
 						<Link to="/">首页</Link>
@@ -88,4 +87,48 @@ class UserHeadImg extends Component{
 	}
 }
 
-export {DataLoad,Header,Footer,UserHeadImg,TigMsgSignIn,DataNull,GetData,GetNextPage}
+//回复框
+class ReplyContainer extends Component{
+	constructor(props) {
+		super(props);
+		this.reply = this.reply.bind(this);
+	}
+
+	componentDidMount() {
+		if(this.props.reply_id){
+			this.refs.replyContent.value = "@" + this.props.author.loginname;
+		}
+	}
+
+	reply(){
+		let {User,id,reply_id,topic_id,author} = this.props;
+		let replyData={},
+			that = this;
+		replyData.accesstoken = User.accesstoken;
+		replyData.content = this.refs.replyContent.value;
+		replyData.reply_id = id;
+		console.log(id);
+
+		Tool.post(`/api/v1/topic/${topic_id}/replies`,replyData,function(res){
+			that.context.router.replace({pathname:`/topic/${topic_id}`})
+		},function(){
+			alert("回复失败")
+		})
+	}
+
+	render(){
+		let { display,author} = this.props;
+		return (
+			<div className="reply-area" style={{display:display}}>
+				<textarea className="reply-area-content" ref="replyContent" cols="30" rows="7" placeholder={"@" + author.loginname} />
+				<button className="reply-area-btn" onClick={this.reply} >回复</button>
+			</div>
+			)
+	}
+}
+
+ReplyContainer.contextTypes = {
+    router: React.PropTypes.object.isRequired
+}
+
+export {DataLoad,Header,Footer,UserHeadImg,TigMsgSignIn,DataNull,GetNextPage,ReplyContainer}
