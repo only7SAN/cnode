@@ -1,22 +1,40 @@
 const IndexList = (state = {
-		isFetching:false
+		isFetching:false,
+		data:[]
 	},action) => {
 
 		let newState;
 
 		switch (action.type){
-			case "INDEXLIST/BEGIN_FETCH_DATA":
+			case "APEENDINDEXLIST/BEGIN_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:true
 				})
 				return newState;
-			case "INDEXLIST/SUCCESS_FETCH_DATA":
+			case "REFRESHINDEXLIST/BEGIN_FETCH_DATA":
+				newState = Object.assign({},state,{
+					isFetching:true
+				})
+				return newState;
+			case "APPENDINDEXLIST/SUCCESS_FETCH_DATA":
+				newState = Object.assign({},state,{
+					isFetching:false,
+					data:state.data.concat(action.payload.data)
+				})
+				return newState;
+			case "REFRESHINDEXLIST/SUCCESS_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:false,
 					data:action.payload.data
 				})
 				return newState;
-			case "INDEXLIST/FAIL_FETCH_DATA":
+			case "APPENDINDEXLIST/FAIL_FETCH_DATA":
+				newState = Object.assign({},state,{
+					isFetching:false,
+					data:action.payload.data
+				})
+				return newState;
+			case "REFRESHINDEXLIST/FAIL_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:false,
 					data:action.payload.data

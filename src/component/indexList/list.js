@@ -1,21 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 import {Link} from 'react-router';
+import  ReactIScroll from 'react-iscroll';
+import  iScroll from 'iscroll';
 
 //主题列表
 class List extends Component{
+	constructor(props) {
+		super(props);
+
+        this.onScrollEnd = (iScrollInstance) =>{
+        	if(iScrollInstance.y < Number.parseInt((iScrollInstance.maxScrollY) / 3 *2)){
+        		this.props.append();
+        	}else if( iScrollInstance.y >= 0){
+        		this.props.refresh();
+        	}
+        };
+	}
 
 	render(){
 		return (
-			<ul className="index-list">
-                {
-                    this.props.list.map((item, index) => {
-                        return <ListItem key={item.id} {...item} />
-                    })
-                }
-            </ul>
+			<ReactIScroll iScroll={iScroll}
+                      options={this.props.options}
+                      onScrollEnd={this.onScrollEnd}>
+				<ul className="index-list">
+	                {
+	                    this.props.list.map((item, index) => {
+	                        return <ListItem key={item.id} {...item} />
+	                    })
+	                }
+	            </ul>
+	        </ReactIScroll>
             );
 	}
 }
+
+List.defaultProps = { 
+						options: {
+					                mouseWheel: true,
+					                scrollbars: true
+					              }
+					 };
 
 class ListItem extends Component{
 	constructor(props) {

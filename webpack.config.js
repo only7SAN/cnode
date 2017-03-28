@@ -5,7 +5,7 @@ var path = __dirname + '/dist/';
 
 module.exports = {
     entry: {
-        app: './src/App', //编译的入口文件
+        app: './src/app', //编译的入口文件
     },
     output: {
         publicPath, //编译好的文件，在服务器的路径

@@ -4,41 +4,74 @@ import {connect} from 'react-redux';
 import actions from '../action/actions';
 import { Footer , IndexTitle , Nav , List } from '../component/indexList';
 
+
 //页面首页主题展示
 class IndexList extends Component {
     constructor(props) {
         super(props);
+        let { actions } =this.props;
+        let tab = this.props.location.query.tab ? this.props.query.tab  : 'all' ;
+
+        this.state = ({fetchData:{
+            prefix:"REFRESHINDEXLIST/",
+            url:"/api/v1/topics",
+            data:{
+                page:1,
+                limit:15,
+                tab:tab,
+                mdrender:true
+            }
+        }})
+
+
+        this.append = function() {
+            this.state.fetchData.prefix = "APPENDINDEXLIST/";
+            this.state.fetchData.data.page++;
+            actions.fetchData(this.state.fetchData);
+            this.setState(this.state);
+          }
+
+        this.refresh = function() {
+            this.state.fetchData.data.page = 1;
+            this.state.fetchData.prefix = "REFRESHINDEXLIST/";
+            actions.fetchData(this.state.fetchData);
+            this.setState(this.state);
+          }
+
+        this.append = this.append.bind(this);
+        this.refresh = this.refresh.bind(this);
     }
+
 
     componentDidMount() {
         let { actions , state } =this.props;
 
-        let indexData = {
-            page:1,
-            type:"",
-            limit:10,
-            mdrender:true
-        }
-
-        actions.fetchData({
-            prefix:"INDEXLIST/",
-            url:"/api/v1/topics",
-            data:indexData
-        })
+        actions.fetchData(this.state.fetchData)
     }
 
     render(){
         let { data } = this.props.state;
-        console.log(this.props);
         return (
-            <div className="indexList">
-                <IndexTitle />
-                <Nav />
-                { data ? <List list={data} /> : null }
+            <div className="indexList"  style={{height: '350px'}}>
+                <IndexTitle  />
+                <Nav tab={this.tab} />
+                { data ? <List list={data}  append = {this.append} refresh = { this.refresh } /> : null }
                 <Footer index='0' User = {this.props.User}/>
             </div>
             )
     }
+
+    componentWillReceiveProps(nextProps) {
+        let { actions , state } =this.props;
+
+
+        this.state.fetchData.data.tab = nextProps.location.query.tab ? nextProps.location.query.tab : "all";
+        if(nextProps.location.query.tab != this.props.location.query.tab){
+            actions.fetchData(this.state.fetchData);
+        };
+        this.setState(this.state);
+    }
+
 }
 
 const mapStateToProps = (state) =>{
