@@ -4,8 +4,6 @@ import {connect} from 'react-redux';
 import action from '../action/index';
 import {Tool} from '../tool';
 
-import GetNextPage  from  './GetNextPage';
-
 class DataLoad extends Component{
 	render(){
 		let {loadAnimate,loadMessage} = this.props;
@@ -20,6 +18,22 @@ DataLoad.defaultProps = {
 	loadAnimate:true,
 	loadMessage:"正在加载中"
 }
+
+class DataRefresh extends Component{
+	render(){
+		let {loadAnimate,loadMessage} = this.props;
+		return (
+				<div className={"data-load data-load-" + {loadAnimate}}>
+					<div className="load-msg">{loadMessage}</div>
+				</div>
+			);
+	}
+}
+DataRefresh.defaultProps = {
+	loadAnimate:true,
+	loadMessage:"正在刷新"
+}
+
 
 class Header extends Component{
 	render(){
@@ -87,48 +101,4 @@ class UserHeadImg extends Component{
 	}
 }
 
-//回复框
-class ReplyContainer extends Component{
-	constructor(props) {
-		super(props);
-		this.reply = this.reply.bind(this);
-	}
-
-	componentDidMount() {
-		if(this.props.reply_id){
-			this.refs.replyContent.value = "@" + this.props.author.loginname;
-		}
-	}
-
-	reply(){
-		let {User,id,reply_id,topic_id,author} = this.props;
-		let replyData={},
-			that = this;
-		replyData.accesstoken = User.accesstoken;
-		replyData.content = this.refs.replyContent.value;
-		replyData.reply_id = id;
-		console.log(id);
-
-		Tool.post(`/api/v1/topic/${topic_id}/replies`,replyData,function(res){
-			that.context.router.replace({pathname:`/topic/${topic_id}`})
-		},function(){
-			alert("回复失败")
-		})
-	}
-
-	render(){
-		let { display,author} = this.props;
-		return (
-			<div className="reply-area" style={{display:display}}>
-				<textarea className="reply-area-content" ref="replyContent" cols="30" rows="7" placeholder={"@" + author.loginname} />
-				<button className="reply-area-btn" onClick={this.reply} >回复</button>
-			</div>
-			)
-	}
-}
-
-ReplyContainer.contextTypes = {
-    router: React.PropTypes.object.isRequired
-}
-
-export {DataLoad,Header,Footer,UserHeadImg,TigMsgSignIn,DataNull,GetNextPage,ReplyContainer}
+export {DataLoad,DataRefresh,Header,Footer,UserHeadImg,TigMsgSignIn,DataNull}

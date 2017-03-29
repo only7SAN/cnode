@@ -24,6 +24,7 @@ class ReplyContainer extends Component{
 		console.log(replyData);
 
 		actions.postData({
+			component:"TopicDetail",
 			prefix:"REPLY/",
 			url:`/api/v1/topic/${topic_id}/replies`,
 			data:replyData,

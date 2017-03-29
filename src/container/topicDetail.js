@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import actions from '../action/actions';
-import { TopicHeader , Content , Reply } from '../component/topicDetail';
+import { TopicHeader ,DataLoad ,DataNull , Content , Reply } from '../component/topicDetail';
 
 //文章详情页
 class TopicDetail extends React.Component {
@@ -11,6 +11,7 @@ class TopicDetail extends React.Component {
         let location = this.props.location;
 
         actions.fetchData({
+            component:"TopicDetail",
             prefix:"TOPICDETAIL/",
             url:`/api/v1/${location.pathname}`,
             data:{
@@ -28,9 +29,8 @@ class TopicDetail extends React.Component {
             User = this.props.User;
             console.log(this.props);
 
-        var { id, title, author, visit_count , content , replies , reply_count, create_at, last_reply_at} = data;
-
-        if(data != ''){
+        if(data){
+            var { id, title, author, visit_count , content , replies , reply_count, create_at, last_reply_at} = data;
             return (
                 <div className="topic-detail">
                     <TopicHeader data = {data} User={User} actions={{postData:actions.postData}}/>
@@ -38,9 +38,11 @@ class TopicDetail extends React.Component {
                     <Reply replies={replies} User={User} topic_id={id} actions={{postData:actions.postData}} />
                 </div>);
         }else{
-            return (
-                <div className="404"></div>
-                )
+            if(state.isFetching){
+                return <DataLoad />;
+            }else{
+                return <DataNull />;
+            }
         }
     }
 

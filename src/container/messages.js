@@ -2,31 +2,44 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import actions from '../action/actions';
-import {Footer , NotReadMsg , ReadMsg } from '../component/messages';
+import { Msg , ReadMsg , Footer } from '../component/messages';
 
 //信息页面
 class Messages extends React.Component {
+    constructor(props) {
+        super(props);
+        let { actions } = this.props;
 
-	componentWillMount() {
-		let { actions,params } = this.props;
+        this.count = () =>{
+            actions.fetchData({
+            component:"Messages",
+            prefix:"COUNT/",
+            url:"/api/v1/message/count",
+            data:{accesstoken:this.props.User.accesstoken}
+               })
+        }
+        this.count = this.count.bind(this);
+    }
+
+	componentDidMount(){
+		let { actions } = this.props;
 
     	actions.fetchData({
+            component:"Messages",
     		prefix:"MESSAGES/",
     		url:`/api/v1/messages`,
             data:{accesstoken:this.props.User.accesstoken,mdrender:true}
     	})
 
-    	actions.fetchData({
-    		prefix:"COUNT/",
-    		url:"/api/v1/message/count",
-    		data:{accesstoken:this.props.User.accesstoken}
-    	})
+    	setTimeout(this.count,1000);
 	}
 
 	render(){
-		var { data , countData } = this.props.state;
-        var { User, params } = this.props;
-        var main = null;
+
+        let { User } = this.props;
+		let { data , countData } = this.props.state;
+        let main = null;
+
 		if (!User) {
             this.context.router.replace({ pathname:'/signin'});
    		}
@@ -34,10 +47,7 @@ class Messages extends React.Component {
 		return (
 			<div className="messages">
 				{
-					data ? <NotReadMsg msg={data.hasnot_read_messages} User = {User} count = { countData } /> : null
-				}
-				{
-					data ? <ReadMsg msg={data.has_read_messages} /> : null
+					data ? <Msg hasnot_read_msg={data.hasnot_read_messages} has_read_msg={data.has_read_messages}  count = { countData } /> : null
 				}
 				<Footer index="2" User={User} />
 			</div>

@@ -12,17 +12,19 @@ class UserView extends React.Component {
 		this.state = this.props.state;
     }
 
-    componentWillMount() {
+    componentDidMount(){
     	let { actions,params } = this.props;
     	let location = this.props.location;
 
     	actions.fetchData({
+            component:"UserView",
             prefix:"USERVIEW/",
     		url:`/api/v1/user/${params.loginname}`,
             data:{}
     	})
 
         actions.fetchData({
+            component:"UserView",
             prefix:"USERCOLLECTION/",
             url:`/api/v1/topic_collect/${params.loginname}`,
             data:{}
@@ -30,7 +32,7 @@ class UserView extends React.Component {
     }
 
 	render(){
-        console.log(this.props.state);
+        console.log(this.props);
 		var { data } = this.props.state;
         var { User, params } = this.props;
         var main = data ? <UserDetail data={data}  /> : null;

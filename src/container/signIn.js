@@ -35,6 +35,7 @@ class SignIn extends React.Component {
 
 		//post请求获得用户信息
 		actions.postData({
+			component:"SignIn",
 			prefix:"SIGNIN/",
 			url:"/api/v1/accesstoken",
 			data:postData

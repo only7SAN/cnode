@@ -1,5 +1,4 @@
-import NotReadMsg from './notReadMsg';
-import ReadMsg from './readMsg';
+import Msg from './Msg';
 import {Footer} from '../index';
 
-export { NotReadMsg , ReadMsg , Footer };
+export { Msg , Footer };

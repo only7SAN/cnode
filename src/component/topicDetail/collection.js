@@ -22,15 +22,19 @@ class Collection extends Component{
 
 		if(!this.props.is_collect){
 			actions.postData({
+				component:"TopicDetail",
 				prefix:"COLLECT/",
 				url:"/api/v1/topic_collect/collect",
-				data:collectData
+				data:collectData,
+				success:() => { return }
 			})
 		}else{
 			actions.postData({
+				component:"TopicDetail",
 				prefix:"DECOLLECT/",
 				url:"/api/v1/topic_collect/de_collect",
-				data:collectData
+				data:collectData,
+				success:() => { return }
 			})
 		}
 		

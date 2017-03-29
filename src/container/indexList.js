@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import actions from '../action/actions';
-import { Footer , IndexTitle , Nav , List } from '../component/indexList';
+import { Footer , DataLoad  , DataRefresh , DataNull ,IndexTitle , Nav , List } from '../component/indexList';
 
 
 //页面首页主题展示
@@ -13,7 +13,8 @@ class IndexList extends Component {
         let tab = this.props.location.query.tab ? this.props.query.tab  : 'all' ;
 
         this.state = ({fetchData:{
-            prefix:"REFRESHINDEXLIST/",
+            component:"IndexList",
+            prefix:"APPENDINDEXLIST/",
             url:"/api/v1/topics",
             data:{
                 page:1,
@@ -49,13 +50,30 @@ class IndexList extends Component {
         actions.fetchData(this.state.fetchData)
     }
 
-    render(){
+    render(){  
+        let { state } =this.props;
         let { data } = this.props.state;
+        let list;
+        
+        if( data.length == 0){
+            if(state.isFetching){
+                list = <DataLoad />;
+            }else{
+                list = <DataNull />;
+            }
+        }else{
+            if(state.isFetching && state.isRefreshing){
+                list = <DataRefresh />;
+            }else{
+               list = <List list={data}  append = {this.append} refresh = { this.refresh } /> ; 
+            }    
+        }
+
         return (
             <div className="indexList"  style={{height: '350px'}}>
                 <IndexTitle  />
                 <Nav tab={this.tab} />
-                { data ? <List list={data}  append = {this.append} refresh = { this.refresh } /> : null }
+                { list }
                 <Footer index='0' User = {this.props.User}/>
             </div>
             )

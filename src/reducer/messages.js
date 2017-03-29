@@ -1,12 +1,15 @@
 const Messages = (state = {
-		isFetching:true
+		isFetching:false
 	},action) => {
 
 		let newState;
 
 		switch (action.type){
 			case "MESSAGES/BEGIN_FETCH_DATA":
-				return state;
+				newState = Object.assign({},state,{
+					isFetching:true
+				})
+				return newState;
 			case "MESSAGES/SUCCESS_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:false,
@@ -20,7 +23,10 @@ const Messages = (state = {
 				})
 				return newState;
 			case "COUNT/BEGIN_FETCH_DATA":
-				return state;
+				newState = Object.assign({},state,{
+					isFetching:true
+				})
+				return newState;
 			case "COUNT/SUCCESS_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:false,

@@ -4,8 +4,8 @@ let actions = {
 	//开始获取数据
 	fetchData:(settings) =>(dispatch,getState) =>{
 
-		//如果正在获取数据，结束
-		if(getState().isFetching){
+		//如果正在获取或者刷新数据，结束
+		if(getState()[settings.component].isFetching || getState()[settings.component].isRefreshing){
 			return ;
 		}
 
@@ -41,7 +41,7 @@ let actions = {
 	//开始post数据
 	postData:(settings) => (dispatch,getState) =>{
 		//如果正在post数据返回
-		if(getState().isPosting){
+		if(getState()[settings.component].isPosting){
 			return ;
 		}
 

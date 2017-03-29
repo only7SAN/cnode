@@ -25,6 +25,7 @@ class ReplyUp extends Component{
 		replyUpData.accesstoken = this.props.User.accesstoken;
 
 		actions.postData({
+			component:"TopicDetail",
 			prefix:"REPLYUP/",
 			url:`/api/v1/reply/${reply_id}/ups`,
 			data:replyUpData,

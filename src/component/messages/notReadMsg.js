@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import {Link} from 'react-router';
-import { Tool } from '../../tool';
 
 //未读消息
 class NotReadMsg extends Component{
