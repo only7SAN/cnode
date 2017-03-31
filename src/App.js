@@ -1,6 +1,6 @@
 import React,{ Component }from 'react';
 import ReactDOM,{ render }from 'react-dom';
-import { Router,Route,IndexRoute,hashHistory} from 'react-router';
+import { Router,Route,IndexRoute,hashHistory,browserHistory} from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store/store';
 
@@ -14,7 +14,7 @@ import SignOut from './container/signOut';
 
 //加载公共样式
 import './style/style.scss';
-import 'github-markdown-css';
+import '../node_modules/github-markdown-css/github-markdown.css';
 
 class Root extends Component{
 	render(){
@@ -24,9 +24,12 @@ class Root extends Component{
 	}
 }
 
+console.log(process);
+var history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
+
 render(
 	<Provider store={store} >
-		<Router history = {hashHistory}>
+		<Router history = {history}>
 			<Route path='/' component = {Root}>
 				<IndexRoute component = {IndexList} />
 				<Route path="topic/create" component = {TopicNew} />

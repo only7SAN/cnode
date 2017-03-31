@@ -18,7 +18,7 @@ class IndexList extends Component {
             url:"/api/v1/topics",
             data:{
                 page:1,
-                limit:15,
+                limit:100,
                 tab:tab,
                 mdrender:true
             }
@@ -70,10 +70,12 @@ class IndexList extends Component {
         }
 
         return (
-            <div className="indexList"  style={{height: '350px'}}>
+            <div className="index">
                 <IndexTitle  />
                 <Nav tab={this.tab} />
-                { list }
+                <div className="react-iscroll" >
+                    { list }
+                </div>
                 <Footer index='0' User = {this.props.User}/>
             </div>
             )

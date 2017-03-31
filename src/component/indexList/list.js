@@ -19,7 +19,7 @@ class List extends Component{
 
 	render(){
 		return (
-			<ReactIScroll iScroll={iScroll}
+			<ReactIScroll className="iscroll" iScroll={iScroll}
                       options={this.props.options}
                       onScrollEnd={this.onScrollEnd}>
 				<ul className="index-list">
