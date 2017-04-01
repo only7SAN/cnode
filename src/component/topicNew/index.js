@@ -1,3 +1,4 @@
 import Topic from './topic';
+import { Header } from '../index';
 
-export { Topic };
+export { Topic , Header };

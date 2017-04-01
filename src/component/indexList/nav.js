@@ -10,11 +10,11 @@ class Nav extends Component{
 
 		return (
 			<ul className='topic-menu'>
-				<li className={setCur.all}><Link to='/'>全部</Link></li>
-				<li className={setCur.good}><Link to='/?tab=good'>精品</Link></li>
-				<li className={setCur.share}><Link to='/?tab=share'>分享</Link></li>
-				<li className={setCur.ask}><Link to='/?tab=ask'>问答</Link></li>
-				<li className={setCur.job}><Link to='/?tab=job'>招聘</Link></li>
+				<li className={setCur.all}><Link to='/' className="iconfont">&#xe641;</Link></li>
+				<li className={setCur.good}><Link to='/?tab=good' className="iconfont">&#xe6ac;</Link></li>
+				<li className={setCur.share}><Link to='/?tab=share' className="iconfont">&#xe62e;</Link></li>
+				<li className={setCur.ask}><Link to='/?tab=ask' className="iconfont">&#xe74a;</Link></li>
+				<li className={setCur.job}><Link to='/?tab=job' className="iconfont">&#xe501;</Link></li>
 			</ul>
 		)
 	}

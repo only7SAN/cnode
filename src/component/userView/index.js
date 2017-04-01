@@ -1,5 +1,5 @@
 import UserDetail from './userDetail';
 import SignOut from './signOut';
-import { Footer } from '../index';
+import { Footer , Header } from '../index';
 
-export { UserDetail , SignOut ,Footer };
+export { UserDetail , SignOut ,Footer ,Header };

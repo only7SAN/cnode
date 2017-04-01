@@ -14,7 +14,8 @@ import SignOut from './container/signOut';
 
 //加载公共样式
 import './style/style.scss';
-import '../node_modules/github-markdown-css/github-markdown.css';
+import './fonticon/iconfont.css';
+import 'github-markdown-css';
 
 class Root extends Component{
 	render(){
@@ -24,7 +25,6 @@ class Root extends Component{
 	}
 }
 
-console.log(process);
 var history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
 
 render(

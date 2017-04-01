@@ -53,15 +53,17 @@ class ReplyList extends Component{
 
 		return (
 			<li className="reply-item">
-				<Link to={"/user/" + author.loginname} className="reply-left" >
-					<img className = "reply-author-head" src={author.avatar_url} />
-				</Link>
-				<div className="reply-right">
+				<div className="reply-top">
+					<Link to={"/user/" + author.loginname} className="reply-left" >
+						<img className = "reply-author-head" src={author.avatar_url} />
+					</Link>
 					<h2 className="reply-author-loginname">{author.loginname}</h2>
-					<div className="reply-content markdown-body" dangerouslySetInnerHTML={createMarkup()} />
 				</div>
-				<ReplyUp id={id} User={User} actions = { actions } is_uped={ is_uped } />
-				<button className="reply-area-control" onClick={this.control} >添加评论</button>
+				<div className="reply-content markdown-body" dangerouslySetInnerHTML={createMarkup()} />
+				<div className="reply-bottom">
+					<ReplyUp id={id} User={User} actions = { actions } is_uped={ is_uped } />
+					<span className="reply-area-control iconfont" onClick={this.control} >&#xe621;</span>
+				</div>
 				<ReplyContainer display={this.state.display} actions={ actions } {...this.props} />
 			</li>
 			);

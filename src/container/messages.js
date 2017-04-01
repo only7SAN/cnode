@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import actions from '../action/actions';
-import { Msg , ReadMsg , Footer } from '../component/messages';
+import { Msg , ReadMsg , Footer ,Header } from '../component/messages';
 
 //信息页面
 class Messages extends React.Component {
@@ -46,6 +46,7 @@ class Messages extends React.Component {
 
 		return (
 			<div className="messages">
+                <Header title={"消息通知"} />
 				{
 					data ? <Msg hasnot_read_msg={data.hasnot_read_messages} has_read_msg={data.has_read_messages}  count = { countData } /> : null
 				}

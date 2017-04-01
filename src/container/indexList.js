@@ -14,11 +14,11 @@ class IndexList extends Component {
 
         this.state = ({fetchData:{
             component:"IndexList",
-            prefix:"APPENDINDEXLIST/",
+            prefix:"REFRESHINDEXLIST/",
             url:"/api/v1/topics",
             data:{
                 page:1,
-                limit:100,
+                limit:10,
                 tab:tab,
                 mdrender:true
             }
@@ -46,6 +46,7 @@ class IndexList extends Component {
 
     componentDidMount() {
         let { actions , state } =this.props;
+        console.log("222")
 
         actions.fetchData(this.state.fetchData)
     }
@@ -84,9 +85,10 @@ class IndexList extends Component {
     componentWillReceiveProps(nextProps) {
         let { actions , state } =this.props;
 
-
         this.state.fetchData.data.tab = nextProps.location.query.tab ? nextProps.location.query.tab : "all";
+        
         if(nextProps.location.query.tab != this.props.location.query.tab){
+            this.state.fetchData.prefix = "REFRESHINDEXLIST/";
             actions.fetchData(this.state.fetchData);
         };
         this.setState(this.state);

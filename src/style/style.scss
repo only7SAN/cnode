@@ -30,18 +30,29 @@ a{
 }
 
 header{
+	position: relative;
 	width: 100%;
 	height: 50px;
 	background-color: #58B000;
-	border:4px solid green;
-	display: flex;
 	justify-content: center;
 
-	.nav-left,.nav-right,.nav-title{
-		flex:1;
-		font-size: 30px;
+	.nav-back,.nav-title{
+		font-size: 1.6rem;
 		line-height: 50px;
 		text-align: center;
+		font-weight: bold;
+		color: #fff; 
+	}
+
+	.nav-back{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		margin-left:15px;
+	}
+
+	.nav-title{
+		display: block;
 	}
 }
 
@@ -98,20 +109,27 @@ header{
 .footer-menu{
 	display: flex;
 	justify-content: center;
+	height: 100%;
 
 	li{
 		flex:1;
-		border:2px solid green;
+		
+		height: 100%;
+		position: relative;
 		background-color: #58B000;
 
-		a{
-			display: block;
-			width: 100%;
-			height: 100%;
-			font-size: 24px;
-			color: white;
-			font-weight: bold;
+		a{	
+			position: absolute;
+			top:50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			font-size: 1.6rem;
 			text-align: center;
+			color: white;
+		}
+
+		.fonticon-cnode{
+			font-size: 0.8rem;
 		}
 	}
 }
@@ -135,12 +153,17 @@ header{
 
 	li{
 		flex:1;
-		border:2px solid green;
+		position: relative;
+		flex-direction: column;
 		background-color: #58B000;
-		font-size: 24px;
-		text-align: center;
 
-		a{
+		a{	
+			position: absolute;
+			top:50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			font-size: 1.6rem;
+			text-align: center;
 			color: white;
 		}
 	}
@@ -158,41 +181,95 @@ header{
 
 .index-list{
 	background-color: #fff;
-	padding: 20px;
+	padding: 5px;
 
 	.index-item{
+		display: flex;
 		clear: both;
-		height: 60px;
-		border-bottom: 2px solid green;
-		margin-top: 20px;
+		border-bottom: 2px solid #58B000;
 
-		.index-item-title{
+		.index-item-left{
+			flex:2;
 			float: left;
+
+			.index-item-author-head{
+				display: block;
+				margin:0 auto;
+				padding: 10px;
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+			}
+
+			.index-item-loginname{
+				display: block;
+				text-align: center;
+				margin-bottom: 15px;
+				font-size: 0.5rem;
+				font-weight: bold;
+				color:#19541b
+			}
 		}
 
-		.index-item-author-head{
-			width: 40px;
-			height: 40px;
-			margin-top: -5px;
-			padding-right: 20px;
-			float: right;
-		}
+		.index-item-right{
+			flex:8;
+			position: relative;
+			margin: 5px;
+			font-size: 0.6rem;
+			float: left;
+			color: #04230a;
 
+			.index-item-title{
+				display: block;
+				margin-top: 10px;
+				font-size: 1.2rem;
+				font-weight: bold;
+				color: #2b352d;
+			}
+
+			.index-item-time{
+				display: block;
+				margin:5px;
+				text-align: right;
+			}
+
+			.index-item-count{
+				display: block;
+				margin:5px;
+				text-align: right;
+			}
+		}
 	}
 }
 
 /**文章详情页面**/
+.topic-detail-page{
+	position: absolute;
+	flex-direction: column;
+	top:0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
 
+.topic-detail{
+}
 
 .topic-header{
+	margin:5px;
 	background-color: #fff;
 	overflow: hidden;
 
+	.topic-header-title{
+		font-size: 1.2rem;
+	}
+
 	.topic-header-list{
+		font-size: 0.6rem;
 
 		li{
 			float:left;
-			margin-left: 20px;
+			margin-right: 10px;
 		}
 	}
 
@@ -200,34 +277,71 @@ header{
 		cursor: pointer;
 		float:left;
 		margin-left: 20px;
-		font-size: 18px;
+		font-size: 1.4rem;
 		font-weight:blod;
+	}
+
+	.topic-is-collect{
+		color: red;
+	}
+
+	.topic-not-collect{
 		color: green;
 	}
 }
 
 .topic-content{
-	margin-top: 20px;
+	margin-top: 10px;
+	padding: 5px;
 	background-color: #fff;
 }
 
 .reply{
-	margin-top: 20px;
+	margin-top: 15px;
 	background-color:#fff;
 	
 	.reply-title{
-		color: red;
-		padding: 30px;
-		border: 1px solid green;
+		padding: 10px;
+		font-size: 1.2rem;
+		border-bottom: 1px solid green;
 	}
 
 	.reply-item{
-		padding: 10px 20px;
-		border: 1px solid green;
+		padding: 5px 10px;
+		border-bottom: 1px solid green;
+		font-size: 0.8rem;
+	}
+
+	.reply-top{
+		overflow: hidden;
 
 		.reply-author-head{
-			width: 35px;
-			height: 35px;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			float: left;
+		}
+
+		.reply-author-loginname{
+			margin: 10px;
+			float: left;
+		}
+	}
+
+	.reply-content{
+		padding: 5px;
+	}
+
+	.reply-bottom{
+		display: block;
+
+
+		.reply-up{
+			font-size: 1.2rem;
+		}
+
+		.reply-area-control{
+			font-size: 1.2rem;
 		}
 	}
 }

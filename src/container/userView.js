@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import actions from '../action/actions';
-import { Footer, UserDetail , SignOut } from '../component/userView';
+import { Footer, UserDetail , SignOut , Header } from '../component/userView';
 
 //用户页面
 class UserView extends React.Component {
@@ -32,13 +32,13 @@ class UserView extends React.Component {
     }
 
 	render(){
-        console.log(this.props);
 		var { data } = this.props.state;
         var { User, params } = this.props;
         var main = data ? <UserDetail data={data}  /> : null;
 
 		return (
 			<div className='user-view'>
+                <Header title="个人中心" />
 				{ User ? <SignOut /> : null }
 				{main}
 				<Footer index="3" User={User} />

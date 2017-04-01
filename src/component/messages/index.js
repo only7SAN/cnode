@@ -1,4 +1,4 @@
 import Msg from './Msg';
-import {Footer} from '../index';
+import { Footer ,Header } from '../index';
 
-export { Msg , Footer };
+export { Msg , Footer , Header };

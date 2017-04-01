@@ -37,14 +37,18 @@ DataRefresh.defaultProps = {
 
 class Header extends Component{
 	render(){
+		let title = this.props.title;
 		return (
 				<header className="header">
-					<div className="nav-left">左</div>
-					<h2 className="nav-title">cnode</h2>
-					<div className="nav-right">右</div>
+					<div className="nav-back iconfont" onClick={this.context.router.goBack} >&#xe623;</div>
+					<span className="nav-title">{title}</span>
 				</header>
 			);
 	}
+}
+
+Header.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }
 
 class DataNull extends Component{
@@ -66,16 +70,16 @@ class Footer extends Component{
 			<footer className="footer">
 				<ul className="footer-menu">
 					<li>
-						<Link to="/">首页</Link>
+						<Link to="/" className="iconfont iconfont-cnode">cnode</Link>
 					</li>
 					<li>
-						<Link to="/topic/create">发表</Link>
+						<Link to="/topic/create" className="iconfont">&#xe60f;</Link>
 					</li>
 					<li>
-						<Link to="/my/messages">消息</Link>
+						<Link to="/my/messages" className="iconfont">&#xe613;</Link>
 					</li>
 					<li>
-						<Link to={myUrl}>我的</Link>
+						<Link to={myUrl} className="iconfont">&#x3575;</Link>
 					</li>
 				</ul>
 			</footer>

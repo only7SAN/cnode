@@ -42,10 +42,10 @@ class Collection extends Component{
 
 	render(){
 
-		let collect = this.props.is_collect ? <span>已收藏</span> : <span>收藏</span>;
+		let collect = this.props.is_collect ? "topic-is-collect" : "topic-not-collect";
 
 		return (
-			<div className="topic-collect" onClick={this.collect} >{collect}</div>
+			<div className={collect + " topic-collect iconfont"} onClick={this.collect} >&#xe6ac;</div>
 			)
 	}
 }

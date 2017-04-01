@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import actions from '../action/actions';
-import { TopicHeader ,DataLoad ,DataNull , Content , Reply } from '../component/topicDetail';
+import { TopicHeader ,DataLoad ,DataNull , Header,Content , Reply } from '../component/topicDetail';
 
 //文章详情页
 class TopicDetail extends React.Component {
@@ -32,11 +32,15 @@ class TopicDetail extends React.Component {
         if(data){
             var { id, title, author, visit_count , content , replies , reply_count, create_at, last_reply_at} = data;
             return (
-                <div className="topic-detail">
-                    <TopicHeader data = {data} User={User} actions={{postData:actions.postData}}/>
-                    <Content content = {content} />
-                    <Reply replies={replies} User={User} topic_id={id} actions={{postData:actions.postData}} />
-                </div>);
+                <div className="topic-detail-page">
+                    <Header title={"cnode"} />
+                    <div className="topic-detail">
+                        <TopicHeader data = {data} User={User} actions={{postData:actions.postData}}/>
+                        <Content content = {content} />
+                        <Reply replies={replies} User={User} topic_id={id} actions={{postData:actions.postData}} />
+                    </div>
+                </div>
+                );
         }else{
             if(state.isFetching){
                 return <DataLoad />;

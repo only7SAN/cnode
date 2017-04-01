@@ -12,7 +12,7 @@ class TopicHeader extends Component{
 
 		return (
 			<div className="topic-header">
-				<h1 className="topic-header-title">{title}</h1>
+				<h3 className="topic-header-title">{title}</h3>
 				<ul className="topic-header-list">
 					<li>发布时间: {Tool.formatDate(create_at)}</li>
 					<li>作者: {author.loginname} </li>

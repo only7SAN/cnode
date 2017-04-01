@@ -34,14 +34,14 @@ const IndexList = (state = {
 			case "APPENDINDEXLIST/FAIL_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:false,
-					data:action.payload.data
+					errorData:action.payload.data
 				})
 				return newState;
 			case "REFRESHINDEXLIST/FAIL_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:false,
 					isRefreshing:false,
-					data:action.payload.data
+					errorData:action.payload.data
 				})
 				return newState;
 			default:

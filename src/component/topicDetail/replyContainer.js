@@ -40,7 +40,7 @@ class ReplyContainer extends Component{
 		let { display,author} = this.props;
 		return (
 			<div className="reply-area" style={{display:display}}>
-				<textarea className="reply-area-content" ref="replyContent" cols="30" rows="7" placeholder={"@" + author.loginname} />
+				<textarea className="reply-area-content" ref="replyContent" cols="40" rows="7" placeholder={"@" + author.loginname} />
 				<button className="reply-area-btn" onClick={this.reply} >回复</button>
 			</div>
 			)

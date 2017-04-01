@@ -44,7 +44,7 @@ class ReplyUp extends Component{
 
 	render(){
 		return (
-			<button className="reply-up" onClick={this.up} style={{color:this.state.color}}  >点赞</button>
+			<span className="reply-up iconfont" onClick={this.up} style={{color:this.state.color}}  >&#xe60c;</span>
 			)
 	}
 }

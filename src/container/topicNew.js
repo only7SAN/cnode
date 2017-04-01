@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../action/actions';
-import { Topic } from '../component/topicNew';
+import { Topic , Header } from '../component/topicNew';
 
 //新建文章主题页面
 class TopicNew extends Component {
@@ -20,6 +20,7 @@ class TopicNew extends Component {
 		}
 		return (
 			<div className="topic-new-page">
+				<Header title={"发表主题"} />
 				{main}
 			</div>
 			)
