@@ -10,10 +10,10 @@ class UserReply extends Component{
 
 		return (
 			<div className="user-replies">
-				<h2 className="user-replies-title">最近评论过的主题</h2>
+				<h2 className="user-replies-title userview-title">最近评论过的主题</h2>
 				<ul className="user-replies-list">
 					{replies.map((item,index) => {
-						return <UserReplyItem key={item.id} {...item} />
+						return <UserReplyItem key={item.id}  {...item} />
 					})}
 				</ul>
 			</div>
@@ -29,7 +29,7 @@ class UserReplyItem extends Component{
 
 		return (
 			<Link to={"/topic/" + id} >
-				<li className="user-replies-item">{title}</li>
+				<li className="user-replies-item userview-item">{title}</li>
 			</Link>
 			);
 	}

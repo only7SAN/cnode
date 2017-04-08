@@ -27,7 +27,6 @@ class TopicDetail extends React.Component {
         
         var {data} = this.props.state,
             User = this.props.User;
-            console.log(this.props);
 
         if(data){
             var { id, title, author, visit_count , content , replies , reply_count, create_at, last_reply_at} = data;
@@ -51,7 +50,12 @@ class TopicDetail extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextProps != nextState;
+        console.log("1")
+        return nextProps != this.props;
+    }
+
+    componentWillReceiveProps(nextProps) {
+ 
     }
 }
 

@@ -45,7 +45,7 @@ class Collection extends Component{
 		let collect = this.props.is_collect ? "topic-is-collect" : "topic-not-collect";
 
 		return (
-			<div className={collect + " topic-collect iconfont"} onClick={this.collect} >&#xe6ac;</div>
+			<div className={collect + " topic-collect iconfont"} onClick={this.collect} >&#xe7c6;</div>
 			)
 	}
 }

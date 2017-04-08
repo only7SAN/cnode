@@ -7,7 +7,6 @@ import { Topic , Header } from '../component/topicNew';
 //新建文章主题页面
 class TopicNew extends Component {
 	render(){
-		console.log(this.props);
 		let { state,User,actions } = this.props;
 		let main = null;
 		if(!User){ 
@@ -15,9 +14,6 @@ class TopicNew extends Component {
 		}else{
 			main = <Topic User = {User} actions = {{ postData : actions.postData }} />
 		};
-		if(this.props.state.success){
-			this.context.router.replace({pathname:`/topic/${this.props.TopicNew.topic_id}`})
-		}
 		return (
 			<div className="topic-new-page">
 				<Header title={"发表主题"} />
@@ -28,7 +24,7 @@ class TopicNew extends Component {
 }
 
 TopicNew.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) =>{

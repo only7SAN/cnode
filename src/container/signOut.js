@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import actions from '../action/actions';
+import { Header } from '../component/index';
 
 //退出页面
 class SignOut extends React.Component {
@@ -9,6 +10,7 @@ class SignOut extends React.Component {
 	constructor(props) {
 		super(props);
 		this.signOut = this.signOut.bind(this);
+		this.disSignOut = this.disSignOut.bind(this);
 	}
 
 	signOut(){
@@ -19,12 +21,20 @@ class SignOut extends React.Component {
 		this.context.router.replace({pathname:'/'});
 	}
 
+	disSignOut(){
+		this.context.router.goBack();
+	}
+
 	render(){
 		let { state,actions } = this.props;
 		return (
 			<div className="form-signOut">
-				<h2>退出页面</h2>
-				<button onClick={this.signOut}>确认退出？</button>
+				<Header title={"退出页面"} />
+				<div className="signout-msg">是否确认退出当前用户？</div>
+				<div className="signout-btn">
+					<button className="signout-yes" onClick={this.signOut}>确认</button>
+					<button className="signout-no" onClick={this.disSignOut}>取消</button>
+				</div>
 			</div>
 			)
 	}

@@ -20,7 +20,7 @@ const SignIn = (state = {
 			case "SIGNIN/FAIL_POST_DATA":
 				newState = Object.assign({},state,{
 					isPosting:false,
-					data:action.payload
+					errorData:action.payload
 				})
 				return newState;
 			default:

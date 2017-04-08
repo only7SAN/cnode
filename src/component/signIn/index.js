@@ -1,4 +1,4 @@
 import TigMsgSignIn from './tigMsgSignIn';
-import { Footer } from '../index';
+import { Footer,Header } from '../index';
 
-export default { Footer ,TigMsgSignIn };
+export { Footer ,Header ,TigMsgSignIn };

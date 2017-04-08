@@ -66,10 +66,6 @@ class ListItem extends Component{
 				</li>
 			);
 	}
-
-	shouldComponentUpdate(np) {
-        return false;
-    }
 }
 
 export default List;

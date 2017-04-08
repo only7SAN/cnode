@@ -13,7 +13,7 @@ class SignOut extends Component{
 
 	render(){
 		return (
-			<button className="signOut-btn" onClick={ this.signOut } value="退出登录" >退出登录</button>
+			<div className="user-msg-signout iconfont" onClick={ this.signOut } >&#xe631;</div>
 			)
 	}
 }

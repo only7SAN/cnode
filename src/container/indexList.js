@@ -46,7 +46,6 @@ class IndexList extends Component {
 
     componentDidMount() {
         let { actions , state } =this.props;
-        console.log("222")
 
         actions.fetchData(this.state.fetchData)
     }
@@ -64,7 +63,7 @@ class IndexList extends Component {
             }
         }else{
             if(state.isFetching && state.isRefreshing){
-                list = <DataRefresh />;
+                list = <DataLoad />;
             }else{
                list = <List list={data}  append = {this.append} refresh = { this.refresh } /> ; 
             }    
@@ -93,7 +92,6 @@ class IndexList extends Component {
         };
         this.setState(this.state);
     }
-
 }
 
 const mapStateToProps = (state) =>{

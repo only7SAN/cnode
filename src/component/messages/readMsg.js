@@ -14,7 +14,7 @@ class ReadMsg extends Component{
 					{
 						messages.map((item,index) => {
 							return (
-								<li className="msg-read-item" key={item.id} >
+								<li className="msg-read-item messages-item" key={item.id} >
 									<Link to={"/user/" + item.author.loginname} >{item.author.loginname}</Link> 回复了你的话题 <Link to={"/topic/" + item.topic.id } >{item.topic.title}</Link>
 								</li>
 							)

@@ -5,13 +5,13 @@ import {Tool} from '../../tool';
 class ReplyUp extends Component{
 	constructor(props) {
 		super(props);
-		this.state = {color:"black"};
+		this.state = {replyStyle:"reply-style-up"};
 		this.up = this.up.bind(this);
 	}
 
 	componentDidMount() {
 		if(this.props.is_uped){
-			this.setState({color:"red"});
+			this.setState({replyStyle:"reply-style-down"});
 		}
 	}
 
@@ -31,11 +31,11 @@ class ReplyUp extends Component{
 			data:replyUpData,
 			success:(res) => { 
 				if(res.action == "down"){
-					this.setState({color:"red"});
+					this.setState({replyStyle:"reply-style-down"});
 				}else if(res.action == "up"){
-					this.setState({color:"black"});
+					this.setState({replyStyle:"reply-style-up"});
 				} else{
-					this.setState({color:"black"});
+					this.setState({replyStyle:"reply-style-up"});
 				}
 			},
 			fail:() => {alert("点赞失败")}
@@ -44,7 +44,7 @@ class ReplyUp extends Component{
 
 	render(){
 		return (
-			<span className="reply-up iconfont" onClick={this.up} style={{color:this.state.color}}  >&#xe60c;</span>
+			<span className={this.state.replyStyle + " reply-up iconfont"} onClick={this.up} >&#xe60c;</span>
 			)
 	}
 }

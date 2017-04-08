@@ -10,7 +10,7 @@ class UserTopic extends Component{
 
 		return (
 			<div className="user-topics">
-				<h2 className="user-topics-title">最近发表的主题</h2>
+				<h2 className="user-topics-title userview-title">最近发表的主题</h2>
 				<ul className="user-topics-list">
 					{topics.map((item,index) => {
 						return <UserTopicItem key={item.id} {...item} />
@@ -28,7 +28,7 @@ class UserTopicItem extends Component{
 		let {title , id} = this.props;
 		return (
 			<Link to={"/topic/" + id} >
-				<li className="user-topics-item">{title}</li>
+				<li className="user-topics-item userview-item">{title}</li>
 			</Link>
 			);
 	}

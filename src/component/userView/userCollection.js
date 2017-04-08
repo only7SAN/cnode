@@ -11,13 +11,13 @@ class UserCollection extends Component{
 	render(){
 		return (
 			<div className="user-collections">
-				<h2 className="user-collections-title">收藏的主题</h2>
+				<h2 className="user-collections-title userview-title">收藏的主题</h2>
 				<ul className="user-collections-list">
 					<ul className="user-collections-list">
 					{this.props.collections.map((item,index) => {
 						return (
 							<Link to={"/topic/" + item.id} key={item.id} >
-									<li className="user-collections-item">{item.title}</li>
+									<li className="user-collections-item userview-item">{item.title}</li>
 								</Link>
 								)
 					})}

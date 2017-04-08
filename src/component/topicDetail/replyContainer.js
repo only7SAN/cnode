@@ -10,7 +10,7 @@ class ReplyContainer extends Component{
 
 	componentDidMount() {
 		if(this.props.id){
-			this.refs.replyContent.value = "@" + this.props.author.loginname;
+			this.refs.replyContent.value = "@" + this.props.author.loginname + " ";
 		}
 	}
 
@@ -29,18 +29,16 @@ class ReplyContainer extends Component{
 			url:`/api/v1/topic/${topic_id}/replies`,
 			data:replyData,
 			success:() =>{
-				this.context.router.replace({pathname:`/`});
+				this.context.router.replace({pathname:`/topic/{topic_id}`});
 			}
 		})
-
-		
 	}
 
 	render(){
 		let { display,author} = this.props;
 		return (
 			<div className="reply-area" style={{display:display}}>
-				<textarea className="reply-area-content" ref="replyContent" cols="40" rows="7" placeholder={"@" + author.loginname} />
+				<textarea className="reply-area-content" ref="replyContent" />
 				<button className="reply-area-btn" onClick={this.reply} >回复</button>
 			</div>
 			)

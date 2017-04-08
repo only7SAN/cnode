@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../action/actions';
-import TigMsgSignIn from '../component/signIn';
+import {TigMsgSignIn,Footer,Header} from '../component/signIn';
 import { Tool } from '../tool';
 
 //登录页面
@@ -13,23 +13,17 @@ class SignIn extends React.Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		console.log("hellodisup");
-				//用户信息记录
-		if(this.props.state.data){
-			this.props.actions.userSignIn(Object.assign({},{accesstoken:this.refs.text.value},this.props.state.data));
-		}
-
+		console.log(this.props);
+		//用户信息记录
 		if(this.props.User){
 			this.context.router.replace({pathname:`/user/${this.props.User.loginname}`})
 		}
-
-
 	}
-
 
 	signIn(){
 		let { state,actions } = this.props;
 		let postData = {};
+		let that = this;
 
 		postData.accesstoken = this.refs.text.value;
 
@@ -38,13 +32,18 @@ class SignIn extends React.Component {
 			component:"SignIn",
 			prefix:"SIGNIN/",
 			url:"/api/v1/accesstoken",
-			data:postData
+			data:postData,
+			success:function(res){
+				actions.userSignIn(Object.assign({},{accesstoken:that.refs.text.value},res));
+			},
+			fail:function(){
+				alert("输入有误");
+			}
 		});
 		
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log("should")
 		return nextProps.state != this.props.state || nextProps.User != this.props.User; 
 	}
 
@@ -52,7 +51,7 @@ class SignIn extends React.Component {
 		
  		return (
 			<div className="form-signIn">
-				<div className="signIn-title">登陆窗口</div>
+				<Header title={"登录页面"} />
 				<TigMsgSignIn />
 				<input className="signIn-input" type="text" placeholder="请输入accesstoken" ref='text' />
 				<button className="signIn-btn" onClick={this.signIn}>登录</button>
@@ -61,7 +60,7 @@ class SignIn extends React.Component {
 	}
 }
 SignIn.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) =>{

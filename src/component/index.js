@@ -9,7 +9,9 @@ class DataLoad extends Component{
 		let {loadAnimate,loadMessage} = this.props;
 		return (
 				<div className={"data-load data-load-" + {loadAnimate}}>
-					<div className="load-msg">{loadMessage}</div>
+					<div className="point point-red"></div>
+					<div className="point point-green"></div>
+					<div className="point point-blue"></div>
 				</div>
 			);
 	}
@@ -70,7 +72,7 @@ class Footer extends Component{
 			<footer className="footer">
 				<ul className="footer-menu">
 					<li>
-						<Link to="/" className="iconfont iconfont-cnode">cnode</Link>
+						<Link to="/" className="iconfont iconfont-cnode">CNode</Link>
 					</li>
 					<li>
 						<Link to="/topic/create" className="iconfont">&#xe60f;</Link>

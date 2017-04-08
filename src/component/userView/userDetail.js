@@ -14,7 +14,7 @@ class UserDetail extends Component{
 		let collect = collections ? <UserCollection collections={collections} /> :null;
 		return (
 			<div className="user-detail">
-				<UserMsg data={this.props.data} />
+				<UserMsg data={this.props.data} User={this.props.User} />
 				<UserTopic topics={recent_topics} />
 				<UserReply replies={recent_replies} />
 				{ collect }
