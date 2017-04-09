@@ -11,6 +11,8 @@ class ReplyUp extends Component{
 
 	componentDidMount() {
 		if(this.props.is_uped){
+			this.setState({replyStyle:"reply-style-up"});
+		}else{
 			this.setState({replyStyle:"reply-style-down"});
 		}
 	}
@@ -30,6 +32,7 @@ class ReplyUp extends Component{
 			url:`/api/v1/reply/${reply_id}/ups`,
 			data:replyUpData,
 			success:(res) => { 
+				console.log(res.action)
 				if(res.action == "down"){
 					this.setState({replyStyle:"reply-style-down"});
 				}else if(res.action == "up"){

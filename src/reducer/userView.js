@@ -7,7 +7,7 @@ const UserView = (state = {
 		switch (action.type){
 			case "USERVIEW/BEGIN_FETCH_DATA":
 				newState = Object.assign({},state,{
-					isFetching:false
+					isFetching:true
 				})
 				return newState;
 			case "USERVIEW/SUCCESS_FETCH_DATA":
@@ -23,7 +23,10 @@ const UserView = (state = {
 				})
 				return newState;
 			case "USERCOLLECTION/BEGIN_FETCH_DATA":
-				return state;
+				newState = Object.assign({},state,{
+					isFetching:true
+				})
+				return newState;
 			case "USERCOLLECTION/SUCCESS_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:false,

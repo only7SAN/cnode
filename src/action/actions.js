@@ -9,14 +9,25 @@ let actions = {
 			return ;
 		}
 
+		let _settings = Object.assign({},{
+			component:"",
+			prefix:"DEFAULT/",
+			url:"",
+			data:{},
+			success:() =>{},
+			fail:() =>{}
+		},settings)
+
 		//通知开始获取数据
-		dispatch(actions.beginFetchData(settings.prefix));
+		dispatch(actions.beginFetchData(_settings.prefix));
 
 		//发送ajax请求，获取数据
-		Tool.get(settings.url,settings.data,(res) =>{
-			dispatch(actions.successFetchData(settings.prefix,res));
+		Tool.get(_settings.url,_settings.data,(res) =>{
+			dispatch(actions.successFetchData(_settings.prefix,res));
+			_settings.success(res);
 		},(error) =>{
-			dispatch(actions.failFetchData(settings.prefix,error));
+			dispatch(actions.failFetchData(_settings.prefix,error));
+			_settings.fail(error);
 		})
 	},
 
@@ -45,15 +56,24 @@ let actions = {
 			return ;
 		}
 
-		//开始post数据
-		dispatch(actions.beginPostData(settings.prefix));
+		let _settings = Object.assign({},{
+			component:"",
+			prefix:"DEFAULT/",
+			url:"",
+			data:{},
+			success:() =>{},
+			fail:() =>{}
+		},settings)
 
-		Tool.post(settings.url,settings.data,(res) => {
-			dispatch(actions.successPostData(settings.prefix,res));
-			settings.success(res);
+		//开始post数据
+		dispatch(actions.beginPostData(_settings.prefix));
+
+		Tool.post(_settings.url,_settings.data,(res) => {
+			dispatch(actions.successPostData(_settings.prefix,res));
+			_settings.success(res);
 		},(error) =>{
-			dispatch(actions.failPostData(settings.prefix,error));
-			settings.fail();
+			dispatch(actions.failPostData(_settings.prefix,error));
+			_settings.fail(error);
 		})
 	},
 

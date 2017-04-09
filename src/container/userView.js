@@ -20,21 +20,20 @@ class UserView extends React.Component {
             component:"UserView",
             prefix:"USERVIEW/",
     		url:`/api/v1/user/${params.loginname}`,
-            data:{}
+            success:() =>{
+                actions.fetchData({
+                    component:"UserView",
+                    prefix:"USERCOLLECTION/",
+                    url:`/api/v1/topic_collect/${params.loginname}`
+                })
+            }
     	})
-
-        actions.fetchData({
-            component:"UserView",
-            prefix:"USERCOLLECTION/",
-            url:`/api/v1/topic_collect/${params.loginname}`,
-            data:{}
-        })
     }
 
 	render(){
-		var { data } = this.props.state;
-        var { User, params } = this.props;
-        var main = data ? <UserDetail data={data} User={User}  /> : null;
+		let { data } = this.props.state;
+        let { User, params } = this.props;
+        let main = data ? <UserDetail data={data} User={User}  /> : null;
 
 		return (
 			<div className='user-view'>
@@ -49,6 +48,7 @@ class UserView extends React.Component {
 UserView.contextTypes = {
     router: React.PropTypes.object.isRequired
 }
+
 const mapStateToProps = (state) =>{
     return {
     	state:state.UserView,

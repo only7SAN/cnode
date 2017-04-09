@@ -21,7 +21,6 @@ class ReplyContainer extends Component{
 		replyData.accesstoken = User.accesstoken;
 		replyData.content = this.refs.replyContent.value;
 		replyData.reply_id = id;
-		console.log(replyData);
 
 		actions.postData({
 			component:"TopicDetail",

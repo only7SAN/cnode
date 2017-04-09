@@ -22,35 +22,48 @@ class TopicDetail extends React.Component {
     }
 
     render(){
+        console.log(this.props);
 
         let {state,actions} = this.props;
-        
-        var {data} = this.props.state,
+        let {data} = this.props.state,
             User = this.props.User;
 
-        if(data){
-            var { id, title, author, visit_count , content , replies , reply_count, create_at, last_reply_at} = data;
-            return (
-                <div className="topic-detail-page">
-                    <Header title={"cnode"} />
-                    <div className="topic-detail">
-                        <TopicHeader data = {data} User={User} actions={{postData:actions.postData}}/>
-                        <Content content = {content} />
-                        <Reply replies={replies} User={User} topic_id={id} actions={{postData:actions.postData}} />
-                    </div>
-                </div>
-                );
+        if(state.isFetching){
+            return <DataLoad />;
         }else{
-            if(state.isFetching){
-                return <DataLoad />;
+            if(data){
+                 var { id, title, author, visit_count , content , replies , reply_count, create_at, last_reply_at} = data;
+                return (
+                    <div className="topic-detail-page">
+                        <Header title={"CNode"} />
+                        <div className="topic-detail">
+                            <TopicHeader data = {data} User={User} actions={{postData:actions.postData}}/>
+                            <Content content = {content} />
+                            <Reply replies={replies} User={User} topic_id={id} actions={{postData:actions.postData}} />
+                        </div>
+                    </div>
+                    );
             }else{
-                return <DataNull />;
+                return <DataNull />
             }
         }
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log("1")
+        let { User,actions } = this.props;
+        let location = this.props.location;
+        
+        if(nextProps.location.key != this.props.location.key){
+            actions.fetchData({
+                component:"TopicDetail",
+                prefix:"TOPICDETAIL/",
+                url:`/api/v1/${location.pathname}`,
+                data:{
+                    accesstoken:User.accesstoken,
+                    mdrender:true
+                }
+            })
+        }
         return nextProps != this.props;
     }
 
