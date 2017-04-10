@@ -13,9 +13,33 @@ class Topic extends Component{
 		 	let that = this;
 		 	var topicData = {};
 
-			topicData.title = this.refs.topicTitle.value;
-		    topicData.tab = this.refs.topicTab.value;
-		    topicData.content = this.refs.topicText.value;
+		 	if(this.refs.topicTitle.value == ''){
+		 		alert("标题不能为空");
+		 		return this.refs.topicTitle.focus();
+		 	}else if(this.refs.topicTitle.value.length <= 3){
+		 		alert("标题不能太短");
+		 		return this.refs.topicTitle.focus();
+		 	}else{
+		 		topicData.title = this.refs.topicTitle.value;
+		 	}
+
+		 	if(this.refs.topicTab.value == ''){
+		 		alert("请选择发布内容");
+		 		return this.refs.topicTab.focus();
+		 	}else{
+		 		topicData.tab = this.refs.topicTab.value;
+		 	}
+
+		 	if(this.refs.topicText.value == ''){
+		 		alert("请输入主题内容");
+		 		return this.refs.topicText.focus();
+		 	}else if(this.refs.topicText.value.length <= 10){
+		 		alert("主题内容不能少于10个字");
+		 		return this.refs.topicText.focus();
+		 	}else{
+		 		topicData.content = this.refs.topicText.value;
+		 	}
+			
 		    topicData.accesstoken = this.props.User.accesstoken;
 		    console.log(topicData);
 		 	

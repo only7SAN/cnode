@@ -25,7 +25,7 @@ class SignIn extends React.Component {
 		let postData = {};
 		let that = this;
 
-		postData.accesstoken = this.refs.text.value;
+		postData.accesstoken = this.refs.text.value.trim();
 
 		//post请求获得用户信息
 		actions.postData({
@@ -37,7 +37,7 @@ class SignIn extends React.Component {
 				actions.userSignIn(Object.assign({},{accesstoken:that.refs.text.value},res));
 			},
 			fail:function(){
-				alert("输入有误");
+				alert("请输入正确的accesstoken");
 			}
 		});
 		
