@@ -6,7 +6,7 @@ class Nav extends Component{
 	
 	render(){
 		var setCur = {};
-		setCur[this.props.tab] = 'on';
+		setCur[this.props.tab] = 'tab-on';
 
 		return (
 			<ul className='topic-menu'>

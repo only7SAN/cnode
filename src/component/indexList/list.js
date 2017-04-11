@@ -48,7 +48,7 @@ class ListItem extends Component{
 	}
 
 	render(){	
-		let {id, title, author, visit_count, reply_count, create_at, last_reply_at} = this.props;
+		let {id, title, author, visit_count, reply_count, create_at, last_reply_at, tab, good, top} = this.props;
 		let time = Tool.formatDate(create_at);
 
 		return (
@@ -58,7 +58,11 @@ class ListItem extends Component{
 						<span className="index-item-loginname">{author.loginname}</span>
 					</div>
 					<div className="index-item-right">
-						<Link to={"/topic/" + id} className="index-item-title">{title}</Link>
+						<div className="index-item-title-place">
+							{ good ? <span className="index-item-good iconfont">&#xe6ac;</span> : null}
+							{ top ? <span className="index-item-top iconfont">&#xe61a;</span> : null}
+							<Link to={"/topic/" + id} className="index-item-title">{title}</Link>
+						</div>
 						<span className="index-item-time">{time}</span>
 						<span className="index-item-count">浏览：{visit_count}  回复：{reply_count}</span>
 					</div>

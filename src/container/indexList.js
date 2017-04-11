@@ -25,14 +25,14 @@ class IndexList extends Component {
         }})
 
 
-        this.append = function() {
+        this.append = function(){
             this.state.fetchData.prefix = "APPENDINDEXLIST/";
             this.state.fetchData.data.page++;
             actions.fetchData(this.state.fetchData);
             this.setState(this.state);
           }
 
-        this.refresh = function() {
+        this.refresh = function(){
             this.state.fetchData.data.page = 1;
             this.state.fetchData.prefix = "REFRESHINDEXLIST/";
             actions.fetchData(this.state.fetchData);
@@ -54,6 +54,7 @@ class IndexList extends Component {
         let { state } =this.props;
         let { data } = this.props.state;
         let list;
+        console.log(data);
         
         if( data.length == 0){
             if(state.isFetching){
@@ -72,7 +73,7 @@ class IndexList extends Component {
         return (
             <div className="index">
                 <IndexTitle  />
-                <Nav tab={this.tab} />
+                <Nav tab={this.state.fetchData.data.tab} />
                 <div className="react-iscroll" >
                     { list }
                 </div>
@@ -83,11 +84,10 @@ class IndexList extends Component {
 
     componentWillReceiveProps(nextProps) {
         let { actions , state } =this.props;
-
-        this.state.fetchData.data.tab = nextProps.location.query.tab ? nextProps.location.query.tab : "all";
-        
+     
         if(nextProps.location.query.tab != this.props.location.query.tab){
             this.state.fetchData.prefix = "REFRESHINDEXLIST/";
+            this.state.fetchData.data.tab = nextProps.location.query.tab ? nextProps.location.query.tab : "all";
             actions.fetchData(this.state.fetchData);
         };
         this.setState(this.state);

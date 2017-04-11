@@ -162,6 +162,12 @@ header{
 	}
 }
 
+.data-null{
+	margin:20px auto;
+	font-size: 1.4rem;
+	color: #3ac139;
+}
+
 /**indexlist 网站首页**/
 .index{
 	position: absolute;
@@ -193,6 +199,13 @@ header{
 			font-size: 1.6rem;
 			text-align: center;
 			color: white;
+		}
+	}
+
+	.tab-on{
+		background-color: #fff;
+		a{
+			color:#58B000;
 		}
 	}
 }
@@ -235,7 +248,7 @@ header{
 				margin-bottom: 15px;
 				font-size: 0.5rem;
 				font-weight: bold;
-				color:#19541b
+				color:#19541b;
 			}
 		}
 
@@ -247,12 +260,16 @@ header{
 			float: left;
 			color: #04230a;
 
-			.index-item-title{
+			.index-item-title-place{
 				display: block;
 				margin-top: 10px;
 				font-size: 1.2rem;
 				font-weight: bold;
 				color: #2b352d;
+
+				.index-item-good,.index-item-top{
+					color:#19541b;
+				}
 			}
 
 			.index-item-time{
@@ -278,9 +295,6 @@ header{
 	left: 0;
 	right: 0;
 	bottom: 0;
-}
-
-.topic-detail{
 }
 
 .topic-header{

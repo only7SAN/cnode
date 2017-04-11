@@ -10,20 +10,30 @@ class TopicDetail extends React.Component {
         let { User,actions } = this.props;
         let location = this.props.location;
 
-        actions.fetchData({
-            component:"TopicDetail",
-            prefix:"TOPICDETAIL/",
-            url:`/api/v1/${location.pathname}`,
-            data:{
-                accesstoken:User.accesstoken,
-                mdrender:true
-            }
-        })
+        if(User){
+            actions.fetchData({
+                component:"TopicDetail",
+                prefix:"TOPICDETAIL/",
+                url:`/api/v1/${location.pathname}`,
+                data:{
+                    accesstoken:User.accesstoken,
+                    mdrender:true
+                }
+            })
+        }else{
+            actions.fetchData({
+                component:"TopicDetail",
+                prefix:"TOPICDETAIL/",
+                url:`/api/v1/${location.pathname}`,
+                data:{
+                    mdrender:true
+                }
+            })
+        }
+        
     }
 
     render(){
-        console.log(this.props);
-
         let {state,actions} = this.props;
         let {data} = this.props.state,
             User = this.props.User;
@@ -54,15 +64,26 @@ class TopicDetail extends React.Component {
         let location = this.props.location;
         
         if(nextProps.location.key != this.props.location.key){
-            actions.fetchData({
-                component:"TopicDetail",
-                prefix:"TOPICDETAIL/",
-                url:`/api/v1/${location.pathname}`,
-                data:{
-                    accesstoken:User.accesstoken,
-                    mdrender:true
-                }
-            })
+           if(User){
+                actions.fetchData({
+                    component:"TopicDetail",
+                    prefix:"TOPICDETAIL/",
+                    url:`/api/v1/${location.pathname}`,
+                    data:{
+                        accesstoken:User.accesstoken,
+                        mdrender:true
+                    }
+                })
+            }else{
+                actions.fetchData({
+                    component:"TopicDetail",
+                    prefix:"TOPICDETAIL/",
+                    url:`/api/v1/${location.pathname}`,
+                    data:{
+                        mdrender:true
+                    }
+                })
+            }
         }
         return nextProps != this.props;
     }

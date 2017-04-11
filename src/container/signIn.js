@@ -25,8 +25,13 @@ class SignIn extends React.Component {
 		let postData = {};
 		let that = this;
 
-		postData.accesstoken = this.refs.text.value.trim();
-
+		if(this.refs.text.value == ''){
+			alert("accesstoken不能为空");
+			return this.refs.text.value.focus();
+		}else{
+			postData.accesstoken = this.refs.text.value.trim();
+		}
+		
 		//post请求获得用户信息
 		actions.postData({
 			component:"SignIn",

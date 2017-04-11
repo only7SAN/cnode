@@ -18,31 +18,37 @@ class ReplyUp extends Component{
 	}
 
 	up(e){
-		let { actions } = this.props;
+		let { actions,User,id } = this.props;
 		e.stopPropagation();
 		e.preventDefault();
 		let replyUpData = {};
-		let reply_id = this.props.id;
+		let reply_id = id;
 		let that = this;
-		replyUpData.accesstoken = this.props.User.accesstoken;
 
-		actions.postData({
-			component:"TopicDetail",
-			prefix:"REPLYUP/",
-			url:`/api/v1/reply/${reply_id}/ups`,
-			data:replyUpData,
-			success:(res) => { 
-				console.log(res.action)
-				if(res.action == "down"){
-					this.setState({replyStyle:"reply-style-down"});
-				}else if(res.action == "up"){
-					this.setState({replyStyle:"reply-style-up"});
-				} else{
-					this.setState({replyStyle:"reply-style-up"});
-				}
-			},
-			fail:() => {alert("点赞失败")}
-		})
+		if(User){
+			replyUpData.accesstoken = User.accesstoken;
+
+			actions.postData({
+				component:"TopicDetail",
+				prefix:"REPLYUP/",
+				url:`/api/v1/reply/${reply_id}/ups`,
+				data:replyUpData,
+				success:(res) => { 
+					console.log(res.action)
+					if(res.action == "down"){
+						this.setState({replyStyle:"reply-style-down"});
+					}else if(res.action == "up"){
+						this.setState({replyStyle:"reply-style-up"});
+					} else{
+						this.setState({replyStyle:"reply-style-up"});
+					}
+				},
+				fail:() => {alert("点赞失败")}
+			})
+		}else{
+			this.context.router.replace({pathname:'/signin'});
+		}
+		
 	}
 
 	render(){
@@ -50,6 +56,10 @@ class ReplyUp extends Component{
 			<span className={this.state.replyStyle + " reply-up iconfont"} onClick={this.up} >&#xe60c;</span>
 			)
 	}
+}
+
+ReplyUp.contextTypes = {
+    router: PropTypes.object.isRequired
 }
 
 export default ReplyUp;

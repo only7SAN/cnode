@@ -12,31 +12,36 @@ class ReplyContainer extends Component{
 		let { User,id,reply_id,topic_id,author,actions } = this.props;
 		let replyData={},
 			that = this;
-		replyData.accesstoken = User.accesstoken;
 
-		if(this.refs.replyContent.value == ''){
-			alert("评论内容不能为空");
-			return this.refs.replyContent.focus();
-		}else if(this.refs.replyContent.value.length <= 8){
-			alert("评论内容不能少于8个字");
-			return this.refs.replyContent.focus();
-		}else{
-			replyData.content = "@" + this.props.author.loginname + " " + this.refs.replyContent.value;
-		}
-		replyData.reply_id = id;
+		if(User){
+			replyData.accesstoken = User.accesstoken;
 
-		actions.postData({
-			component:"TopicDetail",
-			prefix:"REPLY/",
-			url:`/api/v1/topic/${topic_id}/replies`,
-			data:replyData,
-			success:() =>{
-				this.context.router.replace({pathname:`/topic/${topic_id}`});
-			},
-			fail:() =>{
-				alert("评论失败");
+			if(this.refs.replyContent.value == ''){
+				alert("评论内容不能为空");
+				return this.refs.replyContent.focus();
+			}else if(this.refs.replyContent.value.length <= 8){
+				alert("评论内容不能少于8个字");
+				return this.refs.replyContent.focus();
+			}else{
+				replyData.content = "@" + this.props.author.loginname + " " + this.refs.replyContent.value;
 			}
-		})
+			replyData.reply_id = id;
+
+			actions.postData({
+				component:"TopicDetail",
+				prefix:"REPLY/",
+				url:`/api/v1/topic/${topic_id}/replies`,
+				data:replyData,
+				success:() =>{
+					this.context.router.replace({pathname:`/topic/${topic_id}`});
+				},
+				fail:() =>{
+					alert("评论失败");
+				}
+			})
+		}else{
+			this.context.router.replace({pathname:'/signin'});
+		}
 	}
 
 	render(){
