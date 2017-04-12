@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import actions from '../action/actions';
-import {TigMsgSignIn,Footer,Header} from '../component/signIn';
+import actions from '../action';
+import { TigMsgSignIn } from '../component/signIn';
+import { Footer, Header } from '../component/index';
 import { Tool } from '../tool';
 
 //登录页面

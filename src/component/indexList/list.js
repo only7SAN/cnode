@@ -59,8 +59,8 @@ class ListItem extends Component{
 					</div>
 					<div className="index-item-right">
 						<div className="index-item-title-place">
-							{ good ? <span className="index-item-good iconfont">&#xe6ac;</span> : null}
-							{ top ? <span className="index-item-top iconfont">&#xe61a;</span> : null}
+							{ good ? <span className="index-item-good iconfont">&#xf0008;</span> : null}
+							{ top ? <span className="index-item-top iconfont">&#xe60a;</span> : null}
 							<Link to={"/topic/" + id} className="index-item-title">{title}</Link>
 						</div>
 						<span className="index-item-time">{time}</span>

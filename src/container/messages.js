@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
-import actions from '../action/actions';
-import { Msg , ReadMsg , Footer ,Header } from '../component/messages';
+import actions from '../action';
+import { Msg , ReadMsg } from '../component/messages';
+import { Footer,Header } from '../component';
 
 //信息页面
 class Messages extends React.Component {

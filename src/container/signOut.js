@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import actions from '../action/actions';
-import { Header } from '../component/index';
+import actions from '../action';
+import { Header } from '../component';
 
 //退出页面
 class SignOut extends React.Component {

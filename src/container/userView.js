@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
-import actions from '../action/actions';
-import { Footer, UserDetail , Header } from '../component/userView';
+import actions from '../action';
+import { UserDetail } from '../component/userView';
+import { Footer,  Header } from '../component';
 
 //用户页面
 class UserView extends React.Component {

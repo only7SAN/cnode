@@ -1,8 +1,6 @@
-import React,{Component,PropType} from 'react';
-import {Route,Link,Router,hashHistory} from 'react-router';
-import {connect} from 'react-redux';
-import action from '../action/index';
-import {Tool} from '../tool';
+import React,{ Component, PropTypes } from 'react';
+import { Route, Link, Router, hashHistory } from 'react-router';
+import { Tool } from '../tool';
 
 class DataLoad extends Component{
 	render(){
@@ -99,12 +97,5 @@ class TigMsgSignIn extends Component{
 	}
 }
 
-class UserHeadImg extends Component{
-	render(){
-		return (
-			<div className="user-head">头像</div>
-		);
-	}
-}
 
-export {DataLoad,DataRefresh,Header,Footer,UserHeadImg,TigMsgSignIn,DataNull}
+export { DataLoad, DataNull ,DataRefresh, Header, Footer, TigMsgSignIn}

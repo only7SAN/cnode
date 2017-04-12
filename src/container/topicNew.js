@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import actions from '../action/actions';
-import { Topic , Header } from '../component/topicNew';
+import actions from '../action';
+import { Topic } from '../component/topicNew';
+import { Footer,  Header } from '../component';
 
 //新建文章主题页面
 class TopicNew extends Component {

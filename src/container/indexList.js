@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
-import actions from '../action/actions';
-import { Footer , DataLoad  , DataRefresh , DataNull ,IndexTitle , Nav , List } from '../component/indexList';
-
+import actions from '../action';
+import { IndexTitle , Nav , List } from '../component/indexList';
+import { Footer, DataLoad, DataRefresh, DataNull } from '../component/index';
 
 //页面首页主题展示
 class IndexList extends Component {

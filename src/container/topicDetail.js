@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
-import actions from '../action/actions';
-import { TopicHeader ,DataLoad ,DataNull , Header,Content , Reply } from '../component/topicDetail';
+import actions from '../action';
+import { TopicHeader ,Content , Reply } from '../component/topicDetail';
+import { DataLoad ,DataNull , Header } from '../component';
 
 //文章详情页
 class TopicDetail extends React.Component {
