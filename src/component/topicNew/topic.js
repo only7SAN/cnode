@@ -10,49 +10,76 @@ class Topic extends Component{
 		 this.sub = () =>{
 
 		 	let { actions } = this.props;
-		 	let that = this;
-		 	var topicData = {};
+		 	let topicData = {};
 
 		 	if(this.refs.topicTitle.value == ''){
-		 		alert("标题不能为空");
+		 		swal({
+					  title: "标题不能为空!",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
 		 		return this.refs.topicTitle.focus();
 		 	}else if(this.refs.topicTitle.value.length <= 3){
-		 		alert("标题不能太短");
+		 		swal({
+					  title: "标题不能太短!",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
 		 		return this.refs.topicTitle.focus();
 		 	}else{
 		 		topicData.title = this.refs.topicTitle.value;
 		 	}
 
 		 	if(this.refs.topicTab.value == ''){
-		 		alert("请选择发布内容");
+		 		swal({
+					  title: "请选择发布内容",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
 		 		return this.refs.topicTab.focus();
 		 	}else{
 		 		topicData.tab = this.refs.topicTab.value;
 		 	}
 
 		 	if(this.refs.topicText.value == ''){
-		 		alert("请输入主题内容");
+		 		swal({
+					  title: "请输入主题内容",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
 		 		return this.refs.topicText.focus();
 		 	}else if(this.refs.topicText.value.length <= 10){
-		 		alert("主题内容不能少于10个字");
+		 		swal({
+					  title: "主题内容不能少于10个字",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
 		 		return this.refs.topicText.focus();
 		 	}else{
 		 		topicData.content = this.refs.topicText.value;
 		 	}
 			
 		    topicData.accesstoken = this.props.User.accesstoken;
-		    console.log(topicData);
 		 	
 		 	actions.postData({
 		 		component:"TopicNew",
 		 		prefix:"TOPICNEW/",
 		 		url:"/api/v1/topics",
 		 		data:topicData,
-		 		success:function(res){
-		 			that.context.router.replace({pathname:`/topic/${res.topic_id}`})
+		 		success:(res) =>{
+		 			swal({
+					  title: "发表成功",
+					  type: "success",
+					  confirmButtonText: "确认"
+					});
+		 			this.context.router.replace({pathname:`/topic/${res.topic_id}`})
 		 		},
-		 		fail:function(){
-		 			alert("发表失败");
+		 		fail:() =>{
+		 			swal({
+					  title: "发表失败",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
 		 		}
 		 	})
 		 }
@@ -60,7 +87,7 @@ class Topic extends Component{
 
 	render(){
 		return (
-			<div className="topic-new">
+			<div className="topic-new page-middle">
 				<label className="topic-new-label">标题:</label><br/>
 				<input className="topic-new-title" ref="topicTitle" type="text" placeholder="请输入标题" /><br/>
 				<label className="topic-new-label">类型:</label><br/>

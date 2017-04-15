@@ -32,14 +32,15 @@ if (process.argv.indexOf('-p') > -1) { //生产环境
 plugins.push(new ExtractTextPlugin('style.css')); //css单独打包
 
 plugins.push(new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
-    filename: '../index.html', //生成的html存放路径，相对于 path
-    template: './dist/template/index.html', //html模板路径
-    hash: true,    //为静态资源生成hash值
+    filename: '../../index_bundle.html', //生成的html存放路径，相对于 path
+    template: 'index.html', //html模板路径
+    hash: true  //为静态资源生成hash值
 }));
 
 module.exports = {
     entry: {
-        app: './src/app', //编译的入口文件
+        app: './src/app',  //编译的入口文件
+        vendor:'./node_modules/sweetalert/dist/sweetalert.min.js'
     },
     output: {
         publicPath, //编译好的文件，在服务器的路径

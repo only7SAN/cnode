@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import actions from '../action';
-import { IndexTitle , Nav , List } from '../component/indexList';
+import { Nav , List } from '../component/indexList';
 import { Footer, DataLoad, DataRefresh, DataNull } from '../component/index';
 
 //页面首页主题展示
@@ -10,7 +10,7 @@ class IndexList extends Component {
     constructor(props) {
         super(props);
         let { actions } =this.props;
-        let tab = this.props.location.query.tab ? this.props.query.tab  : 'all' ;
+        let tab = this.props.location.query.tab ? this.props.location.query.tab  : 'all' ;
 
         this.state = ({fetchData:{
             component:"IndexList",
@@ -23,7 +23,6 @@ class IndexList extends Component {
                 mdrender:true
             }
         }})
-
 
         this.append = function(){
             this.state.fetchData.prefix = "APPENDINDEXLIST/";
@@ -47,14 +46,13 @@ class IndexList extends Component {
     componentDidMount() {
         let { actions , state } =this.props;
 
-        actions.fetchData(this.state.fetchData)
+        actions.fetchData(this.state.fetchData);
     }
 
     render(){  
-        let { state } =this.props;
-        let { data } = this.props.state;
-        let list;
-        console.log(data);
+        let { state } =this.props,
+            { data } = state,
+            list;
         
         if( data.length == 0){
             if(state.isFetching){
@@ -72,9 +70,8 @@ class IndexList extends Component {
 
         return (
             <div className="index">
-                <IndexTitle  />
                 <Nav tab={this.state.fetchData.data.tab} />
-                <div className="react-iscroll" >
+                <div className="react-iscroll  page-middle" >
                     { list }
                 </div>
                 <Footer index='0' User = {this.props.User}/>

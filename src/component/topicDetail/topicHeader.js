@@ -6,7 +6,7 @@ import { Tool } from '../../tool';
 class TopicHeader extends Component{
 
 	render(){
-		var {id, title, author, visit_count, content , reply_count, create_at, last_reply_at , is_collect} = this.props.data;
+		var { id, title, author, visit_count, content, reply_count, create_at, last_reply_at , is_collect} = this.props.data;
 		var { User,actions } = this.props;
 		let collect = User ? <Collection is_collect={is_collect} topic_id={id} User={User} actions = {actions} /> : null;
 

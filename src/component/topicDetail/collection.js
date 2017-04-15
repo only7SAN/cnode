@@ -18,7 +18,6 @@ class Collection extends Component{
 
 		collectData.accesstoken = this.props.User.accesstoken;
 		collectData.topic_id = this.props.topic_id;
-		console.log(this.props.is_collect);
 
 		if(!this.props.is_collect){
 			actions.postData({

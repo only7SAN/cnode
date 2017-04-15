@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import actions from '../action';
-import { Header } from '../component';
+import { Header  } from '../component';
 
 //退出页面
 class SignOut extends React.Component {
@@ -16,8 +16,6 @@ class SignOut extends React.Component {
 	signOut(){
 		let { actions } = this.props;
 		actions.userSignOut();
-		console.log(localStorage);
-		console.log(this.props.User);
 		this.context.router.replace({pathname:'/'});
 	}
 

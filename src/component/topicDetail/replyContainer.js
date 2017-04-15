@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {Tool} from '../../Tool';
+import {Tool} from '../../tool';
 
 //回复框
 class ReplyContainer extends Component{
@@ -9,7 +9,7 @@ class ReplyContainer extends Component{
 	}
 
 	reply(){
-		let { User,id,reply_id,topic_id,author,actions } = this.props;
+		let { User, id, reply_id, topic_id, author, actions } = this.props;
 		let replyData={},
 			that = this;
 
@@ -17,10 +17,18 @@ class ReplyContainer extends Component{
 			replyData.accesstoken = User.accesstoken;
 
 			if(this.refs.replyContent.value == ''){
-				alert("评论内容不能为空");
+				swal({
+					  title: "评论不能为空",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
 				return this.refs.replyContent.focus();
-			}else if(this.refs.replyContent.value.length <= 8){
-				alert("评论内容不能少于8个字");
+			}else if(this.refs.replyContent.value.length <= 5){
+				swal({
+					  title: "评论字数太短",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
 				return this.refs.replyContent.focus();
 			}else{
 				replyData.content = "@" + this.props.author.loginname + " " + this.refs.replyContent.value;
@@ -33,10 +41,19 @@ class ReplyContainer extends Component{
 				url:`/api/v1/topic/${topic_id}/replies`,
 				data:replyData,
 				success:() =>{
+					swal({
+					  title: "评论成功",
+					  type: "success",
+					  confirmButtonText: "确认"
+					});
 					this.context.router.replace({pathname:`/topic/${topic_id}`});
 				},
 				fail:() =>{
-					alert("评论失败");
+					swal({
+					  title: "评论失败",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
 				}
 			})
 		}else{

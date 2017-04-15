@@ -64,22 +64,22 @@ class Footer extends Component{
 	render(){
 		var myUrl = this.props.User && this.props.User.loginname ? '/user/' + this.props.User.loginname : '/signin';
 	    var arr = [];
-	    arr[this.props.index] = 'on';
+	    arr[this.props.index] = 'footer-on';
 
 		return (
 			<footer className="footer">
 				<ul className="footer-menu">
 					<li>
-						<Link to="/" className="iconfont iconfont-cnode">CNode</Link>
+						<Link to="/" className={"iconfont " + arr[0]}>&#xe602;</Link>
 					</li>
 					<li>
-						<Link to="/topic/create" className="iconfont">&#xe60f;</Link>
+						<Link to="/topic/create" className={"iconfont " + arr[1]}>&#xe60f;</Link>
 					</li>
 					<li>
-						<Link to="/my/messages" className="iconfont">&#xe613;</Link>
+						<Link to="/my/messages" className={"iconfont " + arr[2]}>&#xe613;</Link>
 					</li>
 					<li>
-						<Link to={myUrl} className="iconfont">&#x3575;</Link>
+						<Link to={myUrl} className={"iconfont " + arr[3]}>&#x3575;</Link>
 					</li>
 				</ul>
 			</footer>
@@ -98,4 +98,4 @@ class TigMsgSignIn extends Component{
 }
 
 
-export { DataLoad, DataNull ,DataRefresh, Header, Footer, TigMsgSignIn}
+export { DataLoad, DataNull ,DataRefresh, Header, Footer, TigMsgSignIn }

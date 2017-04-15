@@ -3,9 +3,6 @@ import React, { Component, PropTypes } from 'react';
 //文章内容，将md转化为html渲染（dangerouslySetInnerHTML）
 class Content extends Component{
 
-	componentDidMount() {
-	}
-
 	render(){
 
 		var content = this.props.content;

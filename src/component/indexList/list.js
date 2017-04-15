@@ -2,27 +2,51 @@ import React, { Component, PropTypes } from 'react';
 import {Link} from 'react-router';
 import  ReactIScroll from 'react-iscroll';
 import  iScroll from 'iscroll';
+import ToTop from './toTop';
 import { Tool } from '../../tool';
 
 //主题列表
 class List extends Component{
 	constructor(props) {
 		super(props);
+		this.state = { toTop:"to-top-false" };
 
         this.onScrollEnd = (iScrollInstance) =>{
-        	if(iScrollInstance.y < Number.parseInt((iScrollInstance.maxScrollY) / 3 *2)){
+        	if(iScrollInstance.y - Number.parseInt(iScrollInstance.maxScrollY) <= 100){
         		this.props.append();
         	}else if( iScrollInstance.y >= 0){
         		this.props.refresh();
+        	}else if( iScrollInstance.y <= -320){
+        		this.appear();
+        	}else if( iScrollInstance.y >= -320){
+        		this.disappear();
         	}
         };
+
+        this.appear = () =>{
+        	this.setState({toTop:"to-top-true"});
+        }
+        this.disappear = () =>{
+        	this.setState({toTop:"to-top"});
+        }
+
+        this.toTop = (e) =>{
+	        	e.preventDefault()
+			    this.iScroll.withIScroll(function(iScroll) {
+			    iScroll.scrollTo(0,-1,1000)
+		    });
+        }
 	}
 
 	render(){
 		return (
-			<ReactIScroll className="iscroll" iScroll={iScroll}
-                      options={this.props.options}
-                      onScrollEnd={this.onScrollEnd}>
+			<ReactIScroll   className="iscroll" 
+							ref={(iScroll) =>{
+								this.iScroll = iScroll
+							}}
+							iScroll={iScroll}
+	                        options={this.props.options}
+	                        onScrollEnd={this.onScrollEnd}>
 				<ul className="index-list">
 	                {
 	                    this.props.list.map((item, index) => {
@@ -30,6 +54,7 @@ class List extends Component{
 	                    })
 	                }
 	            </ul>
+	            <ToTop toTopClass={ this.state.toTop } toTop={this.toTop} />
 	        </ReactIScroll>
             );
 	}
@@ -38,7 +63,8 @@ class List extends Component{
 List.defaultProps = { 
 						options: {
 					                mouseWheel: true,
-					                scrollbars: true
+					                scrollbars: true,
+					                bounce:true
 					              }
 					 };
 
@@ -59,8 +85,8 @@ class ListItem extends Component{
 					</div>
 					<div className="index-item-right">
 						<div className="index-item-title-place">
-							{ good ? <span className="index-item-good iconfont">&#xf0008;</span> : null}
-							{ top ? <span className="index-item-top iconfont">&#xe60a;</span> : null}
+							{ good ? <span className="index-item-good">精</span> : null}
+							{ top ? <span className="index-item-top">置顶</span> : null}
 							<Link to={"/topic/" + id} className="index-item-title">{title}</Link>
 						</div>
 						<span className="index-item-time">{time}</span>

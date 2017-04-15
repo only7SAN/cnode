@@ -14,8 +14,11 @@ import SignOut from './container/signOut';
 
 //加载公共样式
 import './style/style.scss';
-import './fonticon/iconfont.css';
+import './iconfont/iconfont.css';
 import 'github-markdown-css';
+
+//加载sweetalert
+import 'sweetalert/dist/sweetalert.css'
 
 class Root extends Component{
 	render(){

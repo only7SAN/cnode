@@ -7,18 +7,24 @@ import { Footer,  Header } from '../component';
 
 //新建文章主题页面
 class TopicNew extends Component {
+
+	componentWillMount() {
+		let { User } = this.props;
+		if(!User){ 
+			this.context.router.replace({pathname:'/signin'});
+		}
+	}
+
 	render(){
 		let { state,User,actions } = this.props;
 		let main = null;
-		if(!User){ 
-			this.context.router.replace({pathname:'/signin'});
-		}else{
-			main = <Topic User = {User} actions = {{ postData : actions.postData }} />
-		};
+		main = <Topic User = {User} actions = {{ postData : actions.postData }} />
+
 		return (
 			<div className="topic-new-page">
 				<Header title={"发表主题"} />
 				{main}
+				<Footer index="1" User={ User } />
 			</div>
 			)
 	}

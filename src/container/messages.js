@@ -22,28 +22,32 @@ class Messages extends React.Component {
         this.count = this.count.bind(this);
     }
 
+    componentWillMount() {
+        let { User } = this.props;
+        if(!User){ 
+            this.context.router.replace({pathname:'/signin'});
+        }
+    }
+
 	componentDidMount(){
-		let { actions } = this.props;
+		let { User ,actions } = this.props;
 
-    	actions.fetchData({
-            component:"Messages",
-    		prefix:"MESSAGES/",
-    		url:`/api/v1/messages`,
-            data:{accesstoken:this.props.User.accesstoken,mdrender:true}
-    	})
+        if(User){
+            actions.fetchData({
+                component:"Messages",
+                prefix:"MESSAGES/",
+                url:`/api/v1/messages`,
+                data:{accesstoken:this.props.User.accesstoken,mdrender:true}
+            })
 
-    	setTimeout(this.count,1000);
+            setTimeout(this.count,1000);
+        }
 	}
 
 	render(){
 
         let { User } = this.props;
 		let { data , countData } = this.props.state;
-        let main = null;
-
-		if (!User) {
-            this.context.router.replace({ pathname:'/signin'});
-   		}
 
 		return (
 			<div className="messages">

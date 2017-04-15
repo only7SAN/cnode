@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --progress --colors",
     "dist": "webpack --progress --colors -p"
   },
   "author": "",
@@ -42,6 +42,7 @@
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "sweetalert": "^1.1.3"
   }
 }

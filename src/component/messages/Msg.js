@@ -9,7 +9,7 @@ class Msg extends Component{
 		let { hasnot_read_msg ,has_read_msg , count} = this.props;
 
 		return (
-			<div className="msg">
+			<div className="msg page-middle">
 				<NotReadMsg msg={ hasnot_read_msg } count={ count } />
 				<ReadMsg msg={ has_read_msg } />
 			</div>
