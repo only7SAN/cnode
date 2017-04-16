@@ -24,15 +24,12 @@ if (process.argv.indexOf('-p') > -1) { //生产环境
             drop_console: true
           }
         }));
-
-    publicPath = '/production/dist/';
-    path = __dirname + '/production/dist/';
 }
 
 plugins.push(new ExtractTextPlugin('style.css')); //css单独打包
 
 plugins.push(new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
-    filename: '../index_bundle.html', //生成的html存放路径，相对于 path
+    filename: '../index.html', //生成的html存放路径，相对于 path
     template: './template/index.html', //html模板路径
     hash: true  //为静态资源生成hash值
 }));
