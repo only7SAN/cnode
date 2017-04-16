@@ -10,7 +10,7 @@ var proxy = [{
 }];
 
 //启动服务
-var server = new WebpackDevServer(webpack(config), {
+var server = new webpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     proxy: proxy,
     stats: {

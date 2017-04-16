@@ -30,7 +30,7 @@ class SignIn extends React.Component {
 					  type: "error",
 					  confirmButtonText: "确认"
 					});
-			return this.refs.text.value.focus();
+			return this.refs.text.focus();
 		}else{
 			postData.accesstoken = this.refs.text.value.trim();
 		}
