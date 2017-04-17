@@ -25,14 +25,14 @@ if (process.argv.indexOf('-p') > -1) { //生产环境
           }
         }));
 
-    publicPath = '/cnode/production/dist/'; //服务器路径
-    path = __dirname + '/production/dist/';
+    publicPath = '/cnode_production/dist/'; //服务器路径
+    path = __dirname + '/cnode_production/dist/';
 }
 
 plugins.push(new ExtractTextPlugin('style.css')); //css单独打包
 
 plugins.push(new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
-    filename: '../../index.html', //生成的html存放路径，相对于 path
+    filename: '../index.html', //生成的html存放路径，相对于 path
     template: './template/index.html', //html模板路径
     hash: true  //为静态资源生成hash值
 }));
