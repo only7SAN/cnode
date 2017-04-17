@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
 
-var publicPath = '/dist/'; //服务器路径
+var publicPath = '/cnode/dist/'; //服务器路径
 var path = __dirname + '/dist/';
 
 var plugins = [];
@@ -24,6 +24,9 @@ if (process.argv.indexOf('-p') > -1) { //生产环境
             drop_console: true
           }
         }));
+
+    publicPath = '/cnode/production/dist/'; //服务器路径
+    path = __dirname + '/production/dist/';
 }
 
 plugins.push(new ExtractTextPlugin('style.css')); //css单独打包
