@@ -25,8 +25,8 @@ if (process.argv.indexOf('-p') > -1) { //生产环境
           }
         }));
 
-    publicPath = '/cnode_production/dist/'; //服务器路径
-    path = __dirname + '/cnode_production/dist/';
+    publicPath = '/cnode/dist/'; //服务器路径
+    path = __dirname + '/cnode/dist/';
 }
 
 plugins.push(new ExtractTextPlugin('style.css')); //css单独打包
