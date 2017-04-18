@@ -1,18 +1,23 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
 import  ReactIScroll from 'react-iscroll';
 import  iScroll from 'iscroll';
 import ToTop from './toTop';
 import { Tool } from '../../tool';
+import { DataLoad } from '../index';
 
 //主题列表
 class List extends Component{
 	constructor(props) {
 		super(props);
+
+
 		this.state = { toTop:"to-top-false" };
 
         this.onScrollEnd = (iScrollInstance) =>{
-        	if(iScrollInstance.y - Number.parseInt(iScrollInstance.maxScrollY) <= 100){
+        	console.log("223")
+        	if(iScrollInstance.y - Number.parseInt(iScrollInstance.maxScrollY) <= 50){
         		this.props.append();
         	}else if( iScrollInstance.y >= 0){
         		this.props.refresh();
@@ -31,28 +36,43 @@ class List extends Component{
         }
 
         this.toTop = (e) =>{
-	        	e.preventDefault()
-			    this.iScroll.withIScroll(function(iScroll) {
+        	e.preventDefault()
+		    this.iScroll.withIScroll(function(iScroll) {
 			    iScroll.scrollTo(0,-1,1000)
 		    });
         }
+
+        this.preventTouch = (e) =>{
+        	e.preventDefault();
+        }
+	}
+
+	componentDidMount() {
+		console.log(ReactDOM.findDOMNode(this));
+		ReactDOM.findDOMNode(this).addEventListener('touchmove',this.preventTouch, { passive: false });
 	}
 
 	render(){
+
+		let main = <DataLoad />;
+
 		return (
 			<ReactIScroll   className="iscroll" 
 							ref={(iScroll) =>{
 								this.iScroll = iScroll
 							}}
 							iScroll={iScroll}
+							onBeforeScrollStart={this.onBeforeScrollStart}
 	                        options={this.props.options}
-	                        onScrollEnd={this.onScrollEnd}>
+	                        onScrollEnd={this.onScrollEnd}
+	                        >
 				<ul className="index-list">
 	                {
 	                    this.props.list.map((item, index) => {
 	                        return <ListItem key={item.id} {...item} />
 	                    })
 	                }
+	                <li>{ main }</li>
 	            </ul>
 	            <ToTop toTopClass={ this.state.toTop } toTop={this.toTop} />
 	        </ReactIScroll>

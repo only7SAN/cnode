@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import actions from '../action';
 import { TopicHeader ,Content , Reply } from '../component/topicDetail';
-import { DataLoad ,DataNull , Header } from '../component';
+import { DataLoad ,DataNull , Header ,Footer} from '../component';
 
 //文章详情页
 class TopicDetail extends React.Component {
@@ -47,11 +47,12 @@ class TopicDetail extends React.Component {
                 return (
                     <div className="topic-detail-page">
                         <Header title={"CNode"} />
-                        <div className="topic-detail">
+                        <div className="topic-detail page-middle">
                             <TopicHeader data = {data} User={User} actions={{postData:actions.postData}}/>
                             <Content content = {content} />
                             <Reply replies={replies} User={User} topic_id={id} actions={{postData:actions.postData}} />
                         </div>
+                        <Footer User={User} />
                     </div>
                     );
             }else{

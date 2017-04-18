@@ -24,12 +24,14 @@ const UserView = (state = {
 				return newState;
 			case "USERCOLLECTION/BEGIN_FETCH_DATA":
 				newState = Object.assign({},state,{
-					isFetching:true
+					isFetching:true,
+					isColFetching:true
 				})
 				return newState;
 			case "USERCOLLECTION/SUCCESS_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:false,
+					isColFetching:false,
 					data:{
 						...state.data,
 						collections:action.payload.data
@@ -39,6 +41,7 @@ const UserView = (state = {
 			case "USERCOLLECTION/FAIL_FETCH_DATA":
 				newState = Object.assign({},state,{
 					isFetching:false,
+					isColFetching:false,
 					data:{
 						...state.data,
 						collections:action.payload.data

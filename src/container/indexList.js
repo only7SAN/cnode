@@ -38,6 +38,10 @@ class IndexList extends Component {
             this.setState(this.state);
           }
 
+        this.preventTouch = (e) =>{
+            e.preventDefault();
+        }
+
         this.append = this.append.bind(this);
         this.refresh = this.refresh.bind(this);
     }
@@ -46,7 +50,7 @@ class IndexList extends Component {
     componentDidMount() {
         let { actions , state } =this.props;
 
-        actions.fetchData(this.state.fetchData);
+        actions.fetchData(this.state.fetchData); 
     }
 
     render(){  
@@ -64,14 +68,14 @@ class IndexList extends Component {
             if(state.isFetching && state.isRefreshing){
                 list = <DataLoad />;
             }else{
-               list = <List list={data}  append = {this.append} refresh = { this.refresh } /> ; 
-            }    
+                list = <List list={data} append = {this.append} refresh = { this.refresh } /> ;
+            }   
         }
 
         return (
             <div className="index">
                 <Nav tab={this.state.fetchData.data.tab} />
-                <div className="react-iscroll  page-middle" >
+                <div className="react-iscroll  page-middle" ref="react_iscroll" >
                     { list }
                 </div>
                 <Footer index='0' User = {this.props.User}/>

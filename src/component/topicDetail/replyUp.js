@@ -35,14 +35,30 @@ class ReplyUp extends Component{
 				data:replyUpData,
 				success:(res) => { 
 					if(res.action == "down"){
+						swal({
+						  title: "已取消点赞",
+						  type: "success",
+						  confirmButtonText: "确认"
+						});
 						this.setState({replyStyle:"reply-style-down"});
 					}else if(res.action == "up"){
+						swal({
+						  title: "已成功点赞",
+						  type: "success",
+						  confirmButtonText: "确认"
+						});
 						this.setState({replyStyle:"reply-style-up"});
 					} else{
 						this.setState({replyStyle:"reply-style-up"});
 					}
 				},
-				fail:() => {alert("点赞失败")}
+				fail:() => {
+					swal({
+					  title: "操作失败",
+					  type: "error",
+					  confirmButtonText: "确认"
+					});
+				}
 			})
 		}else{
 			this.context.router.replace({pathname:'/signin'});

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import actions from '../action';
 import { UserDetail } from '../component/userView';
-import { Footer,  Header } from '../component';
+import { Footer,  Header ,DataLoad ,DataNull} from '../component';
 
 //用户页面
 class UserView extends React.Component {
@@ -32,14 +32,27 @@ class UserView extends React.Component {
     }
 
 	render(){
-		let { data } = this.props.state;
+		let { data ,isColFetching } = this.props.state;
         let { User, params } = this.props;
-        let main = data ? <UserDetail data={data} User={User}  /> : null;
+        console.log(isColFetching)
+        let main;
+        if(isColFetching === false){
+            console.log(data)
+            if(data){
+                main = <UserDetail data={data} User={User}  />;
+            }else{
+                main = <DataNull />;
+            }
+        }else{
+            main = <DataLoad />;
+        }
 
 		return (
 			<div className='user-view'>
                 <Header title="个人中心" />
-				{main}
+                <div className="page-middle">
+				    {main}
+                </div>
 				<Footer index="3" User={User} />
 			</div>
 			)

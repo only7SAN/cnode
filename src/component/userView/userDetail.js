@@ -13,7 +13,7 @@ class UserDetail extends Component{
 		let { loginname , avatar_url , score , create_at , collections ,recent_replies , recent_topics } = this.props.data;
 		let collect = collections ? <UserCollection collections={collections} /> :null;
 		return (
-			<div className="user-detail page-middle">
+			<div className="user-detail">
 				<UserMsg data={this.props.data} User={this.props.User} />
 				<UserTopic topics={recent_topics} />
 				<UserReply replies={recent_replies} />

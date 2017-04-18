@@ -69,8 +69,8 @@ class SignIn extends React.Component {
  		return (
 			<div className="form-signIn">
 				<Header title={"登录页面"} />
-				<TigMsgSignIn />
 				<div className="page-middle">
+					<TigMsgSignIn />
 					<input className="signIn-input" type="text" placeholder="请输入accesstoken" ref='text' />
 					<button className="signIn-btn" onClick={this.signIn}>登录</button>
 				</div>
