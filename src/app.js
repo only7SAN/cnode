@@ -8,7 +8,7 @@ import IndexList from './container/indexList';
 import TopicDetail from './container/topicDetail';
 import TopicNew from './container/topicNew';
 import Messages from './container/messages';
-import UserView from './container/userview';
+import UserView from './container/userView';
 import SignIn from './container/signIn';
 import SignOut from './container/signOut';
 

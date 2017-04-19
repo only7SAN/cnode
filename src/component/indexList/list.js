@@ -16,7 +16,6 @@ class List extends Component{
 		this.state = { toTop:"to-top-false" };
 
         this.onScrollEnd = (iScrollInstance) =>{
-        	console.log("223")
         	if(iScrollInstance.y - Number.parseInt(iScrollInstance.maxScrollY) <= 50){
         		this.props.append();
         	}else if( iScrollInstance.y >= 0){
@@ -48,7 +47,6 @@ class List extends Component{
 	}
 
 	componentDidMount() {
-		console.log(ReactDOM.findDOMNode(this));
 		ReactDOM.findDOMNode(this).addEventListener('touchmove',this.preventTouch, { passive: false });
 	}
 
@@ -57,7 +55,7 @@ class List extends Component{
 		let main = <DataLoad />;
 
 		return (
-			<ReactIScroll   className="iscroll" 
+			<ReactIScroll   className="iscroll"
 							ref={(iScroll) =>{
 								this.iScroll = iScroll
 							}}
