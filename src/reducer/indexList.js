@@ -45,9 +45,8 @@ const IndexList = (state = {
 				})
 				return newState;
 			default:
-				return state;	
+				return state;
 		}
-	
 }
 
 export default IndexList;

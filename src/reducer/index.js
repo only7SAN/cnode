@@ -6,4 +6,4 @@ import User from './user';
 import SignIn from './signIn';
 import TopicNew from './topicNew';
 
-export default { IndexList, TopicDetail, Messages, UserView, User , SignIn , TopicNew }
+export { IndexList, TopicDetail, Messages, UserView, User , SignIn , TopicNew }

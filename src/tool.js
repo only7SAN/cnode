@@ -1,5 +1,3 @@
-import merged from 'obj-merged';
-
 const target = 'https://cnodejs.org';
 const Tool = {};
 
@@ -151,4 +149,4 @@ Tool.removeItem = function(key){
 	}
 };
 
-export { Tool, merged }
+export { Tool }
