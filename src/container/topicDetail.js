@@ -50,7 +50,7 @@ class TopicDetail extends React.Component {
                         <div className="topic-detail page-middle">
                             <TopicHeader data = {data} User={User} actions={{postData:actions.postData}}/>
                             <Content content = {content} />
-                            <Reply replies={replies} User={User} topic_id={id} actions={{postData:actions.postData}} />
+                            <Reply replies={replies} User={User} topic_id={id} reply_count={reply_count} actions={{postData:actions.postData}} />
                         </div>
                         <Footer User={User} />
                     </div>

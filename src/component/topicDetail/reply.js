@@ -8,11 +8,11 @@ class Reply extends Component{
 
 	render(){
 
-		let { replies,User,topic_id,actions } = this.props;
+		let { replies,User,topic_id,actions,reply_count } = this.props;
 
 		return (
 			<div className="reply">
-				<h2 className="reply-title">回复列表</h2>
+				{ reply_count ? <h2 className="reply-title">回复列表</h2> : null }
 				<ul className="replies">
 					{
 						replies.map((item ,index) =>{
